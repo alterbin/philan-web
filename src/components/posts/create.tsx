@@ -32,9 +32,8 @@ export default function NewPostForm() {
   const { mutate, isPending } = postQueries.Create();
 
   const formikProps = {
-    enableReinitialize: true,
     initialValues,
-    validationSchema: zodToFormikAdapter(postSchema),
+    validate: zodToFormikAdapter(postSchema),
     onSubmit: (values: PostSchema) => {
       mutate({
         ...values,
@@ -53,17 +52,15 @@ export default function NewPostForm() {
           label="First Name"
           name="firstName"
           placeholder="First Name"
-          required
           value={values.firstName}
           onChange={handleChange}
           onBlur={handleBlur}
-          error={errorParser(errors, touched, "firstName")}
+          error={errors.firstName}
         />
         <Input
           label="Last Name"
           name="lastName"
           placeholder="Last Name"
-          required
           value={values.lastName}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -75,17 +72,15 @@ export default function NewPostForm() {
           label="Email"
           name="email"
           placeholder="User Email"
-          required
           value={values.email}
           onChange={handleChange}
           onBlur={handleBlur}
-          error={errors.email}
+          error={errorParser(errors, touched, "email")}
         />
         <Input
           label="Location"
           name="location"
           placeholder="Location"
-          required
           value={values.location}
           onChange={handleChange}
           onBlur={handleBlur}

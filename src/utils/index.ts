@@ -63,8 +63,6 @@ export function getCallbackUrl({ baseUrl = '', url = '' }: { baseUrl?: string; u
 }
 
 export function errorParser(errors: any, touched: any, key: string): any {
-  console.log('first', errors)
-  console.log('touched', touched)
   if (errors[key] && touched[key]) {
     return errors[key];
   }
