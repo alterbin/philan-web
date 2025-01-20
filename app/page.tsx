@@ -1,6 +1,6 @@
 "use client";
 import NewPostForm from "@/src/components/posts/create";
-import Card from "@/src/components/ui/card";
+import Card from "@/src/components/posts/card";
 import { useQuery } from "@tanstack/react-query";
 
 const fetchPosts = async () => {
@@ -18,34 +18,35 @@ export default function Home() {
     error,
   } = useQuery({
     queryFn: () => fetchPosts(),
-    queryKey: ["post"],
+    queryKey: ["posts"],
     refetchOnMount: "always",
   });
 
-  console.log('error', error)
-  console.log('posts', posts)
+  console.log("error", error);
+  console.log("posts", posts);
 
   return (
-    <div className="items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
+    <div className="items-center bg-[#f3f9f9] min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <div>
-        <h1>Philan</h1>
-        <p>Loading...</p>
-        {error && (<p>{`Error: ${(error as Error).message}`}</p>)}
-        <div>
-          {posts?.map((post: any) => (
-            <Card
-              key={post.id}
-              title={post.name}
-              description={post.condition}
-              image={post.photos[0]}
-              onClick={() => console.log("Show interest")}
-            />
-          ))}
+        {error && <p>{`Error: ${(error as Error).message}`}</p>}
+        <div className="card_wrapper">
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            posts?.map((post: any) => (
+              <Card
+                key={post.id}
+                title={post.name}
+                description={post.condition}
+                image={post.photos[0]}
+                onClick={() => console.log("Show interest")}
+              />
+            ))
+          )}
         </div>
-        <div className="">
-          
-        <NewPostForm/>
-</div>
+        <div className="flex justify-center items-center w-full mt-10">
+          <NewPostForm />
+        </div>
       </div>
     </div>
   );

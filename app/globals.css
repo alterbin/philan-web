@@ -5,17 +5,130 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --main-color: #06382e;
+  --sec-color: #dd9940;
+  --text-color: #333;
+  --sub-text-color: #8b8787;
+  --max-width: 1100px;
+  --border-radius: 12px;
+  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
+    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --secondary-glow: radial-gradient(
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0)
+  );
+
+  --tile-start-rgb: 239, 245, 249;
+  --tile-end-rgb: 228, 232, 233;
+  --tile-border: conic-gradient(
+    #00000080,
+    #00000040,
+    #00000030,
+    #00000020,
+    #00000010,
+    #00000010,
+    #00000080
+  );
+
+  --callout-rgb: 238, 240, 241;
+  --callout-border-rgb: 172, 175, 176;
+  --card-rgb: 180, 185, 188;
+  --card-border-rgb: 131, 134, 135;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #06382e;
     --foreground: #ededed;
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+
+    --tile-start-rgb: 2, 13, 46;
+    --tile-end-rgb: 2, 5, 19;
+    --tile-border: conic-gradient(
+      #ffffff80,
+      #ffffff40,
+      #ffffff30,
+      #ffffff20,
+      #ffffff10,
+      #ffffff10,
+      #ffffff80
+    );
+
+    --callout-rgb: 20, 20, 20;
+    --callout-border-rgb: 108, 108, 108;
+    --card-rgb: 100, 100, 100;
+    --card-border-rgb: 200, 200, 200;
   }
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+.main-color {
+  color: var(--main-color) !important;
+}
+
+.bg-main-color {
+  background-color: var(--main-color) !important;
+}
+
+.sec-color {
+  color: var(--sec-color) !important;
+}
+
+.bg-sec-color {
+  background-color: var(--sec-color) !important;
+}
+
+.text-color {
+  color: var(--text-color) !important;
+}
+
+.bg-text-color {
+  background-color: var(--text-color) !important;
+}
+
+.sub-text-color {
+  color: var(--sub-text-color) !important;
+}
+
+.bg-sub-text-color {
+  background-color: var(--sub-text-color) !important;
+}
+
+.card {
+  @apply bg-[#06382e] shadow-md rounded-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-lg cursor-pointer;
+}
+
+.card img {
+  @apply w-full h-48 object-cover;
+}
+
+.card h3 {
+  @apply text-lg font-semibold text-white px-4 mt-2;
+}
+
+.card p {
+  @apply text-sm text-sub_text_color px-4 mb-4;
+}
+
+.card_wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 30px;
 }
