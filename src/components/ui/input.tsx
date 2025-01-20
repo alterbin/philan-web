@@ -7,7 +7,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   helperText?: string;
 }
 
-const Input: React.FC<InputProps> = (props: InputProps) => {
+export const Input: React.FC<InputProps> = (props: InputProps) => {
   const {
     type = "text",
     label,
@@ -37,5 +37,3 @@ const Input: React.FC<InputProps> = (props: InputProps) => {
     </div>
   );
 };
-
-export default Input;

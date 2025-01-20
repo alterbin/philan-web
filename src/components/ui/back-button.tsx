@@ -10,7 +10,7 @@ interface IProps {
   disable?: boolean;
 }
 
-const BackButton: React.FC<IProps> = ({ title, goto, disable }) => {
+export const BackButton: React.FC<IProps> = ({ title, goto, disable }) => {
   const router = useRouter();
 
   const goBack = () => {
@@ -34,5 +34,3 @@ const BackButton: React.FC<IProps> = ({ title, goto, disable }) => {
     </div>
   );
 };
-
-export default BackButton;

@@ -4,6 +4,8 @@ import { errorToast, successToast } from "@/src/services/helper";
 import api from "../../api";
 import queryKey from "./keys";
 import { CreatePostBody, Post, ReadRequest } from "./types";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const BASE_URL = "/api/posts";
 
@@ -36,6 +38,7 @@ const fetchPosts = (
 
 const Create = (options = {}) => {
   const queryClient = useQueryClient();
+  const { push } = useRouter();
 
   const { mutate, ...response } = useMutation({
     mutationFn: api.post,
@@ -43,7 +46,7 @@ const Create = (options = {}) => {
     ...options,
     onSuccess: async (data: any) => {
       successToast(data.description);
-
+       push("/")
       await queryClient.invalidateQueries({ queryKey: [queryKey.read] });
     },
     onError: (err: any) => {
@@ -62,7 +65,38 @@ const Create = (options = {}) => {
   };
 };
 
+const Del = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate, ...response } = useMutation({
+    mutationFn: api.delete,
+    mutationKey: [queryKey.delete],
+    onSuccess: async (data: any) => {
+      successToast(data?.description || 'Success');
+      queryClient.invalidateQueries({ queryKey: [queryKey.read], type: 'all', exact: false });
+      document.body.click();
+    },
+    onError: (err: any) => {
+      if (err.response && err.response.data && err.response.data.message) {
+        toast.error(err.response.data.message);
+      } else {
+        toast.error('Something went wrong');
+      }
+    },
+  });
+  return {
+    ...response,
+    mutate: (body: { id?: string }) => {
+      mutate({
+        url: `${BASE_URL}`,
+        body: { ...body },
+      });
+    },
+  };
+};
+
 export const postQueries = {
   fetchPosts,
   Create,
+  Del
 };

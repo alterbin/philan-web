@@ -1,7 +1,6 @@
 "use client";
 
-import Input from "../ui/input";
-import Button from "../ui/Button";
+import { Button, Input } from "../ui";
 import { postQueries } from "@/src/services/queries";
 import { useFormik } from "formik";
 import { z } from "zod";
@@ -78,9 +77,9 @@ export default function NewPostForm() {
           error={errorParser(errors, touched, "email")}
         />
         <Input
-          label="Location"
+          label="Pickup Location"
           name="location"
-          placeholder="Location"
+          placeholder="Pickup Location"
           value={values.location}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -91,7 +90,7 @@ export default function NewPostForm() {
         <Input
           label="Condition"
           name="condition"
-          placeholder="Condition"
+          placeholder="Item Condition"
           required
           value={values.condition}
           onChange={handleChange}
@@ -101,7 +100,7 @@ export default function NewPostForm() {
         <Input
           label="Contact Info"
           name="contactInfo"
-          placeholder="Contact Info"
+          placeholder="Contact Info: phone number or email"
           required
           value={values.contactInfo}
           onChange={handleChange}

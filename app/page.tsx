@@ -1,12 +1,19 @@
 "use client";
 import Card from "@/src/components/posts/card";
 import { postQueries } from "@/src/services/queries";
-import Button from "@/src/components/ui/Button";
+import { Button, Modal } from "@/src/components/ui";
 import { useRouter } from "next/navigation";
+import { useModals } from "@/src/contexts/modals";
 
 export default function Home() {
   const { data: posts, isLoading } = postQueries.fetchPosts();
+  const { mutate } = postQueries.Del();
+  const { modals, setModals } = useModals();
   const { push } = useRouter();
+
+  const handleClose = () => {
+    setModals((prev) => ({ ...prev, show: false }));
+  };
 
   return (
     <div className="items-center bg-[#f3f9f9] min-h-screen p-8 pb-20 gap-16 sm:p-20">
@@ -38,6 +45,13 @@ export default function Home() {
           </Button>
         </div>
       </div>
+
+      <Modal
+        isOpen={modals.show}
+        onClose={handleClose}
+        title="No Permission"
+        message="Ops, you do not have the permission to perform this operation"
+      />
     </div>
   );
 }

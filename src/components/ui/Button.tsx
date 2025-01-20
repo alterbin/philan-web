@@ -13,7 +13,7 @@ interface ButtonProps {
   color?: "black" | "red";
 }
 
-const Button = ({
+export const Button = ({
   children,
   inputValue,
   disabled,
@@ -54,5 +54,3 @@ const Button = ({
     </button>
   );
 };
-
-export default Button;
