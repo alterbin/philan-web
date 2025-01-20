@@ -1,61 +1,29 @@
 const routes = {
   home: {
-    path: '/',
+    path: "/",
+
+    hash: {
+      aboutUs: "about-us",
+      contactUs: "contact-us",
+      events: "events",
+      initiatives: "initiatives",
+    },
   },
 
   auth: {
-    path: '/auth',
+    path: "/auth",
 
     forgotPassword: {
-      path: '/auth/forgot-password',
+      path: "/auth/forgot-password",
     },
 
     resetPassword: {
-      path: '/auth/reset-password',
-    },
-
-    onboard: {
-      path: '/auth/onboard',
-    },
-
-    verification: {
-      path: '/auth/register/verification',
-    },
-
-    verificationStatus: {
-      path: '/auth/register/verification-status',
+      path: "/auth/reset-password",
     },
   },
 
   dashboard: {
-    path: '/dashboard',
-  },
-  team: {
-    path: '/team',
-  },
-  profile: {
-    path: '/profile',
-  },
-  users: {
-    path: '/users',
-    brand: {
-      path: '/users/brand',
-    },
-    influencers: {
-      path: '/users/influencers',
-    },
-  },
-  transactions: {
-    path: '/transactions',
-  },
-  campaigns: {
-    path: '/campaigns',
-    all: {
-      path: '/campaigns/all',
-    },
-    disputes: {
-      path: '/campaigns/disputes',
-    },
+    path: "/dashboard",
   },
 };
 
