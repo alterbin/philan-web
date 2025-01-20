@@ -4,7 +4,7 @@ interface ButtonProps {
   children: React.ReactNode;
   inputValue?: any;
   disabled?: boolean;
-  onclick?: any;
+  onClick?: any;
   type?: "submit" | "button" | "reset";
   size?: "lg" | "md" | "sm";
   icon?: React.ReactNode;
@@ -17,7 +17,7 @@ const Button = ({
   children,
   inputValue,
   disabled,
-  onclick,
+  onClick,
   type = "submit",
   size = "lg",
   variant = "filled",
@@ -28,7 +28,7 @@ const Button = ({
   return (
     <button
       disabled={isInputValueProvided ? disabled : false}
-      onClick={onclick}
+      onClick={onClick}
       className={`${className} transition uppercase ${
         size === "sm"
           ? "px-5 py-[10px] text-[11px]"

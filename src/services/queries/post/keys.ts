@@ -1,4 +1,4 @@
-import { getQueryKeys } from '@/services/helper';
+import { getQueryKeys } from '@/src/services/helper';
 
 const namespace = 'posts';
 

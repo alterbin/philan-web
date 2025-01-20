@@ -1,4 +1,3 @@
-import { Profile } from '@/services/queries/profile/types';
 
 export const getPageHeading = (pathname: string) => {
   const pageName = pathname.substring(pathname.lastIndexOf('/') + 1);
@@ -57,12 +56,6 @@ export function getLocalStorage<T>(key: string): T | null {
   }
 }
 
-export function getProfileImage(data: Profile) {
-  const name = `${data?.firstName || ''} ${data?.lastName || ''}`;
-  const imgPlaceholder = `https://ui-avatars.com/api/?name=${name}&background=random&font-size=0.35&rounded=true`;
-  return imgPlaceholder;
-}
-
 export function getCallbackUrl({ baseUrl = '', url = '' }: { baseUrl?: string; url?: string }) {
   const windowLocation = typeof window !== 'undefined' ? window.location : null;
   const base = baseUrl || (windowLocation ? windowLocation.origin : '');
@@ -70,9 +63,12 @@ export function getCallbackUrl({ baseUrl = '', url = '' }: { baseUrl?: string; u
 }
 
 export function errorParser(errors: any, touched: any, key: string): any {
+  console.log('first', errors)
+  console.log('touched', touched)
   if (errors[key] && touched[key]) {
     return errors[key];
   }
 
   return null;
 }
+

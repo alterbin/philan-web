@@ -1,6 +1,6 @@
-import { getLocalStorage, saveLocalStorage } from '@/utils';
-import routes from '@/utils/routes';
-import config from '@/utils/config';
+import { getLocalStorage, saveLocalStorage } from "@/src/utils";
+import routes from "@/src/utils/routes";
+import config from "@/src/utils/config";
 
 const baseURL = config.BASE_URL;
 
@@ -10,9 +10,9 @@ const refreshToken = async (originalRequest: RequestInit & { url: string }) => {
     const url = `${baseURL}/Account/refresh-token?token=${token?.refreshToken}`;
 
     const response = await fetch(url, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     });
 
@@ -24,7 +24,7 @@ const refreshToken = async (originalRequest: RequestInit & { url: string }) => {
 
       // Retry the original request with the new token
       const updatedHeaders = new Headers(originalRequest.headers);
-      updatedHeaders.set('Authorization', `Bearer ${data.data?.accessToken}`);
+      updatedHeaders.set("Authorization", `Bearer ${data.data?.accessToken}`);
 
       const retriedResponse = await fetch(originalRequest.url, {
         ...originalRequest,
@@ -44,12 +44,12 @@ const refreshToken = async (originalRequest: RequestInit & { url: string }) => {
 
 const fetchWithAuth = async (
   url: string,
-  options: RequestInit = {},
+  options: RequestInit = {}
 ): Promise<Response> => {
   const token = getLocalStorage<string>(config.tokenKey);
 
   const headers = new Headers(options.headers);
-  headers.set('Authorization', `Bearer ${token || ''}`);
+  headers.set("Authorization", `Bearer ${token || ""}`);
 
   const request: RequestInit & { url: string } = {
     ...options,
@@ -60,7 +60,10 @@ const fetchWithAuth = async (
   try {
     const response = await fetch(request.url, request);
 
-    if (response.status === 401 && window.location.pathname !== routes.home.path) {
+    if (
+      response.status === 401 &&
+      window.location.pathname !== routes.home.path
+    ) {
       window.location.href = `${routes.home.path}?next=${window.location.pathname}`;
     }
 

@@ -1,9 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { errorToast, successToast } from "@/services/helper";
+import { errorToast, successToast } from "@/src/services/helper";
 
 import api from "../../api";
 import queryKey from "./keys";
-import { Post, ReadRequest } from "./types";
+import { CreatePostBody, Post, ReadRequest } from "./types";
 
 const BASE_URL = "/api/posts";
 
@@ -56,7 +56,7 @@ const Create = (options = {}) => {
   });
   return {
     ...response,
-    mutate: (body: Partial<Post>) => {
+    mutate: (body: CreatePostBody) => {
       mutate({ url: `${BASE_URL}`, body: { ...body } });
     },
   };

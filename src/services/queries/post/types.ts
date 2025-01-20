@@ -5,13 +5,22 @@ export interface Post {
   condition: string;
   firstName: string | null;
   lastName: string | null;
-  onboarded: boolean;
   photos: string[];
   location: string;
   contactInfo: string;
   userId?: string;
   interests?: string;
   user?: string;
+}
+
+export type CreatePostBody = {
+  email: string;
+  condition: string;
+  firstName: string;
+  lastName: string;
+  photos: string[];
+  location: string;
+  contactInfo: string;
 }
 export interface Posts {
   data: Post[];

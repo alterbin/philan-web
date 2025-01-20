@@ -1,4 +1,4 @@
-import config from "@/utils/config";
+import config from "@/src/utils/config";
 import fetchWithAuth from "./fetchConfig";
 
 const { BASE_URL: baseUrl } = config;
