@@ -1,3 +1,4 @@
+"use client"
 import React, { InputHTMLAttributes, useState } from "react";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {

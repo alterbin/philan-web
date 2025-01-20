@@ -1,5 +1,5 @@
 import NewPostForm from "@/src/components/posts/create";
-import BackButton from "@/src/components/ui/back-button";
+import { BackButton } from "@/src/components/ui";
 import React from "react";
 
 const page = () => {

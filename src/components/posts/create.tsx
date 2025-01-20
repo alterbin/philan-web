@@ -1,11 +1,13 @@
 "use client";
 
-import { Button, Input } from "../ui";
+import { Button, Input, InputGoogleAutocomplete } from "../ui";
 import { postQueries } from "@/src/services/queries";
 import { useFormik } from "formik";
 import { z } from "zod";
 import { zodToFormikAdapter } from "@/src/utils/zodToFormikAdapter";
 import { errorParser } from "@/src/utils";
+import InputLocationAutocomplete from "../ui/input-google-autocomplete/location-auto-complete";
+import Autocomplete from "../ui/input-google-autocomplete/location-auto-complete";
 
 const postSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
@@ -41,8 +43,15 @@ export default function NewPostForm() {
     },
   };
 
-  const { handleChange, handleSubmit, errors, touched, values, handleBlur } =
-    useFormik<PostSchema>(formikProps);
+  const {
+    handleChange,
+    handleSubmit,
+    errors,
+    touched,
+    values,
+    handleBlur,
+    setFieldValue,
+  } = useFormik<PostSchema>(formikProps);
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -76,7 +85,17 @@ export default function NewPostForm() {
           onBlur={handleBlur}
           error={errorParser(errors, touched, "email")}
         />
-        <Input
+        {/* <InputGoogleAutocomplete
+          label="Location Address (Nearby)"
+          onBlur={handleBlur}
+          name="location"
+          placeholder=" "
+          error={errors.location && touched.location && errors.location}
+          onPlaceSelected={(place: any) => {
+            setFieldValue("location", place);
+          }}
+        /> */}
+        <Autocomplete
           label="Pickup Location"
           name="location"
           placeholder="Pickup Location"

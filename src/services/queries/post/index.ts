@@ -1,4 +1,9 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { errorToast, successToast } from "@/src/services/helper";
 
 import api from "../../api";
@@ -36,6 +41,37 @@ const fetchPosts = (
   };
 };
 
+// const fetchInfinitePosts = (
+//   options: ReadRequest = {
+//     page: 1,
+//     order: "ASC",
+//     take: 10,
+//     searchTerm: "",
+//   }
+// ) => {
+//   const {data, ...response} = useInfiniteQuery({
+//     queryKey: ["notification"],
+//     queryFn: ({ pageParam }) => fetchPosts(options),
+//     initialPageParam: 1,
+//     retry: 1,
+//     getNextPageParam: (lastPage, allPages, pageParam) => {
+//       const { total } = lastPage;
+//       const totalFetchedItems = allPages.flatMap((page) => page?.data)?.length;
+//       return totalFetchedItems < total ? pageParam + 1 : undefined;
+//     },
+//   });
+
+//   const notification = {
+//     data: data?.pages.flatMap((page) => page.data) || [],
+//     total: data?.pages?.[0]?.total || 0,
+//   };
+
+//   return {
+//     ...response,
+//     notification: notification,
+//   };
+// };
+
 const Create = (options = {}) => {
   const queryClient = useQueryClient();
   const { push } = useRouter();
@@ -46,7 +82,7 @@ const Create = (options = {}) => {
     ...options,
     onSuccess: async (data: any) => {
       successToast(data.description);
-       push("/")
+      push("/");
       await queryClient.invalidateQueries({ queryKey: [queryKey.read] });
     },
     onError: (err: any) => {
@@ -72,15 +108,19 @@ const Del = () => {
     mutationFn: api.delete,
     mutationKey: [queryKey.delete],
     onSuccess: async (data: any) => {
-      successToast(data?.description || 'Success');
-      queryClient.invalidateQueries({ queryKey: [queryKey.read], type: 'all', exact: false });
+      successToast(data?.description || "Success");
+      queryClient.invalidateQueries({
+        queryKey: [queryKey.read],
+        type: "all",
+        exact: false,
+      });
       document.body.click();
     },
     onError: (err: any) => {
       if (err.response && err.response.data && err.response.data.message) {
         toast.error(err.response.data.message);
       } else {
-        toast.error('Something went wrong');
+        toast.error("Something went wrong");
       }
     },
   });
@@ -98,5 +138,5 @@ const Del = () => {
 export const postQueries = {
   fetchPosts,
   Create,
-  Del
+  Del,
 };
