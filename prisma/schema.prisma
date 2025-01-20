@@ -17,7 +17,8 @@ model User {
 
 model Post {
   id          Int        @id @default(autoincrement())
-  name        String
+  firstName   String      @default("")
+  lastName    String      @default("")
   condition   String
   photos      String[]   @default([])
   location    String
