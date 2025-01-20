@@ -46,8 +46,6 @@ function FooterBtm() {
 function FooterC() {
   const [loading, setLoading] = useState(false);
 
-  const pathname = usePathname();
-
   const WEB_APP_URL = MAIN_WEB_APP_URL;
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
