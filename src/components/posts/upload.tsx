@@ -1,6 +1,7 @@
 import { useState, ChangeEvent } from "react";
 import { Input } from "../ui";
 import toast from "react-hot-toast";
+import { Trash } from "../svgs/icons/trash";
 
 interface IProps {
   photos: string[];
@@ -54,6 +55,10 @@ export default function ImageUploader({ photos, setPhotos }: IProps) {
     xhr.send(formData);
   };
 
+  const handleDelete = (index: number) => {
+    setPhotos((prevPhotos) => prevPhotos.filter((_, i) => i !== index));
+  };
+
   return (
     <div>
       <Input
@@ -78,12 +83,25 @@ export default function ImageUploader({ photos, setPhotos }: IProps) {
 
       <div className="flex flex-wrap gap-3 mt-4">
         {photos?.map((photo, index) => (
-          <img
-            key={index}
-            src={photo}
-            alt={`Uploaded ${index}`}
-            style={{ width: "100px", objectFit: "cover" }}
-          />
+          <div key={index} className="relative w-[100px] h-[100px] ">
+            <button
+              onClick={() => handleDelete(index)}
+              type="button"
+              className="absolute top-[5px] left-[5px] h-[30px] w-[30px] cursor-pointer text-white border-none flex items-center justify-center bg-gray-100 rounded-[50%]"
+            >
+              <Trash />
+            </button>
+            <img
+              src={photo}
+              alt={`Uploaded ${index}`}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                borderRadius: "4px",
+              }}
+            />
+          </div>
         ))}
       </div>
     </div>
