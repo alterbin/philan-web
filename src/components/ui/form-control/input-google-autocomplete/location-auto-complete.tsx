@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useCombobox } from "downshift";
-import { Input } from "../input";
+import { Input } from "../form-control/input";
 
 interface AutocompleteProps {
   name: string;

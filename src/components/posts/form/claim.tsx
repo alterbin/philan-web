@@ -7,7 +7,7 @@ import { z } from "zod";
 import { zodToFormikAdapter } from "@/src/utils/zodToFormikAdapter";
 import { errorParser } from "@/src/utils";
 import { claimGivingsSchema } from "@/src/services/queries/post/schemas";
-import Autocomplete from "../../ui/input-google-autocomplete/location-auto-complete";
+import Autocomplete from "../../ui/form-control/input-google-autocomplete/location-auto-complete";
 import { Textarea } from "../../ui/form-control/textarea";
 
 type PostSchema = z.infer<typeof claimGivingsSchema>;

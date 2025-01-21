@@ -6,11 +6,10 @@ import { useFormik } from "formik";
 import { z } from "zod";
 import { zodToFormikAdapter } from "@/src/utils/zodToFormikAdapter";
 import { errorParser } from "@/src/utils";
-import InputLocationAutocomplete from "../../ui/input-google-autocomplete/location-auto-complete";
-import Autocomplete from "../../ui/input-google-autocomplete/location-auto-complete";
 import { createGivingSchema } from "@/src/services/queries/post/schemas";
 import { useState } from "react";
 import ImageUploader from "../upload";
+import Autocomplete from "../../ui/form-control/input-google-autocomplete/location-auto-complete";
 
 type PostSchema = z.infer<typeof createGivingSchema>;
 
