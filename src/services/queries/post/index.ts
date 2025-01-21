@@ -8,7 +8,7 @@ import { errorToast, successToast } from "@/src/services/helper";
 
 import api from "../../api";
 import queryKey from "./keys";
-import { CreatePostBody, Post, ReadRequest } from "./types";
+import { CreatePostBody, Post, Posts, ReadRequest } from "./types";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
@@ -17,13 +17,13 @@ const BASE_URL = "/api/posts";
 const fetchPosts = (
   options: ReadRequest = {
     page: 1,
-    order: "ASC",
+    order: "desc",
     take: 10,
-    searchTerm: "",
+    search: "",
   }
 ) => {
-  const { page, order, take, searchTerm } = options;
-  const url = `${BASE_URL}?page=${page}&order=${order}&take=${take}&searchTerm=${searchTerm}`;
+  const { page, order, take, search } = options;
+  const url = `${BASE_URL}?page=${page}&order=${order}&take=${take}&search=${search}`;
 
   const response = useQuery({
     queryFn: () => api.get({ url }),
@@ -37,40 +37,43 @@ const fetchPosts = (
 
   return {
     ...response,
-    data: response?.data as Post[],
+    data: response?.data as Posts,
   };
 };
 
-// const fetchInfinitePosts = (
-//   options: ReadRequest = {
-//     page: 1,
-//     order: "ASC",
-//     take: 10,
-//     searchTerm: "",
-//   }
-// ) => {
-//   const {data, ...response} = useInfiniteQuery({
-//     queryKey: ["notification"],
-//     queryFn: ({ pageParam }) => fetchPosts(options),
-//     initialPageParam: 1,
-//     retry: 1,
-//     getNextPageParam: (lastPage, allPages, pageParam) => {
-//       const { total } = lastPage;
-//       const totalFetchedItems = allPages.flatMap((page) => page?.data)?.length;
-//       return totalFetchedItems < total ? pageParam + 1 : undefined;
-//     },
-//   });
+const fetchInfinitePosts = (
+  options: ReadRequest = {
+    page: 1,
+    order: "ASC",
+    take: 10,
+    search: "",
+  }
+) => {
+  const { page, order, take, search } = options;
+  const url = `${BASE_URL}?page=${page}&order=${order}&take=${take}&search=${search}`;
 
-//   const notification = {
-//     data: data?.pages.flatMap((page) => page.data) || [],
-//     total: data?.pages?.[0]?.total || 0,
-//   };
+  const {data, ...response} = useInfiniteQuery({
+    queryKey: ["givings"],
+    queryFn: ({ pageParam }) => api.get({ url }),
+    initialPageParam: 1,
+    retry: 1,
+    getNextPageParam: (lastPage, allPages, pageParam) => {
+      const { total } = lastPage;
+      const totalFetchedItems = allPages.flatMap((page) => page?.data)?.length;
+      return totalFetchedItems < total ? pageParam + 1 : undefined;
+    },
+  });
 
-//   return {
-//     ...response,
-//     notification: notification,
-//   };
-// };
+  const givings = {
+    data: data?.pages.flatMap((page) => page.data) || [],
+    total: data?.pages?.[0]?.total || 0,
+  };
+
+  return {
+    ...response,
+    data: givings,
+  };
+};
 
 const Create = (options = {}) => {
   const queryClient = useQueryClient();
@@ -139,4 +142,5 @@ export const postQueries = {
   fetchPosts,
   Create,
   Del,
+  fetchInfinitePosts,
 };

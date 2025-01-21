@@ -31,7 +31,7 @@ export interface ReadRequest {
   page?: number;
   order?: string;
   take?: number;
-  searchTerm?: string | string[] | undefined;
+  search?: string | string[] | undefined;
 }
 
 
