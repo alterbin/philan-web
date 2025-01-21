@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -234,7 +234,11 @@ export default function Footer() {
 
       <FooterC />
 
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          duration: 5000,
+        }}
+      />
     </div>
   );
 }

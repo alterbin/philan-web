@@ -9,6 +9,8 @@ import { errorParser } from "@/src/utils";
 import InputLocationAutocomplete from "../ui/input-google-autocomplete/location-auto-complete";
 import Autocomplete from "../ui/input-google-autocomplete/location-auto-complete";
 import { createGivingSchema } from "@/src/services/queries/post/schemas";
+import { useState } from "react";
+import ImageUploader from "./upload";
 
 type PostSchema = z.infer<typeof createGivingSchema>;
 
@@ -21,6 +23,7 @@ const initialValues = {
 
 export default function NewPostForm() {
   const { mutate, isPending } = postQueries.Create();
+  const [photos, setPhotos] = useState<string[]>([]);
 
   const formikProps = {
     initialValues,
@@ -28,20 +31,13 @@ export default function NewPostForm() {
     onSubmit: (values: PostSchema) => {
       mutate({
         ...values,
-        photos: [],
+        photos,
       });
     },
   };
 
-  const {
-    handleChange,
-    handleSubmit,
-    errors,
-    touched,
-    values,
-    handleBlur,
-    setFieldValue,
-  } = useFormik<PostSchema>(formikProps);
+  const { handleChange, handleSubmit, errors, touched, values, handleBlur } =
+    useFormik<PostSchema>(formikProps);
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -99,7 +95,9 @@ export default function NewPostForm() {
         />
       </div>
 
-      <Button type="submit" disabled={isPending}>
+      <ImageUploader photos={photos} setPhotos={setPhotos} />
+
+      <Button type="submit" disabled={isPending && photos?.length < 1}>
         {isPending ? "Saving..." : "Create Post"}
       </Button>
     </form>

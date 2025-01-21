@@ -28,7 +28,7 @@ export const Input: React.FC<InputProps> = (props: InputProps) => {
       </label>
       <input
         type={type}
-        className={`w-full px-3 py-2 border rounded text-text_color ${
+        className={`w-full px-3 py-2 border rounded bg-white text-text_color ${
           error ? " border-red-200" : ""
         }`}
         onChange={onChange}
