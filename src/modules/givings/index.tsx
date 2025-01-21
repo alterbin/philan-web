@@ -42,7 +42,7 @@ export default function Givings() {
             givings?.data?.map((post) => (
               <Card
                 key={post.id}
-                title={`${post?.firstName} ${post?.lastName}`}
+                title={post.name}
                 description={post.condition}
                 image={post.photos[0]}
                 onClick={() => console.log("Show interest")}

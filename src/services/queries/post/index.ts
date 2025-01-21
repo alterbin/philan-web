@@ -8,7 +8,7 @@ import { errorToast, successToast } from "@/src/services/helper";
 
 import api from "../../api";
 import queryKey from "./keys";
-import { CreatePostBody, Post, Posts, ReadRequest } from "./types";
+import { CreateGivingDto, Post, Posts, ReadRequest } from "./schemas";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
@@ -65,8 +65,8 @@ const fetchInfinitePosts = (
   });
 
   const givings = {
-    data: data?.pages.flatMap((page) => page.data) || [],
-    total: data?.pages?.[0]?.total || 0,
+    data: data?.pages.flatMap((page) => page.data) || [] as Post[],
+    total: data?.pages?.[0]?.total || 0 as number,
   };
 
   return {
@@ -98,7 +98,7 @@ const Create = (options = {}) => {
   });
   return {
     ...response,
-    mutate: (body: CreatePostBody) => {
+    mutate: (body: CreateGivingDto) => {
       mutate({ url: `${BASE_URL}`, body: { ...body } });
     },
   };

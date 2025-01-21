@@ -8,25 +8,15 @@ import { zodToFormikAdapter } from "@/src/utils/zodToFormikAdapter";
 import { errorParser } from "@/src/utils";
 import InputLocationAutocomplete from "../ui/input-google-autocomplete/location-auto-complete";
 import Autocomplete from "../ui/input-google-autocomplete/location-auto-complete";
+import { createGivingSchema } from "@/src/services/queries/post/schemas";
 
-const postSchema = z.object({
-  firstName: z.string().min(1, "First name is required"),
-  lastName: z.string().min(1, "Last name is required"),
-  email: z.string().email("Invalid email format"),
-  location: z.string().min(1, "Location is required"),
-  condition: z.string().min(1, "Condition is required"),
-  contactInfo: z.string().min(1, "Contact info is required"),
-});
-
-type PostSchema = z.infer<typeof postSchema>;
+type PostSchema = z.infer<typeof createGivingSchema>;
 
 const initialValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  location: "",
-  condition: "",
-  contactInfo: "",
+  name: "",
+  address: "",
+  description: "",
+  contact: "",
 };
 
 export default function NewPostForm() {
@@ -34,7 +24,7 @@ export default function NewPostForm() {
 
   const formikProps = {
     initialValues,
-    validate: zodToFormikAdapter(postSchema),
+    validate: zodToFormikAdapter(createGivingSchema),
     onSubmit: (values: PostSchema) => {
       mutate({
         ...values,
@@ -57,34 +47,25 @@ export default function NewPostForm() {
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <div className="grid grid-cols-2 gap-2">
         <Input
-          label="First Name"
-          name="firstName"
-          placeholder="First Name"
-          value={values.firstName}
+          label="Item Name"
+          name="name"
+          placeholder="Item Name"
+          value={values.name}
           onChange={handleChange}
           onBlur={handleBlur}
-          error={errors.firstName}
+          error={errorParser(errors, touched, "name")}
         />
         <Input
-          label="Last Name"
-          name="lastName"
-          placeholder="Last Name"
-          value={values.lastName}
+          label="Contact Info"
+          name="contact"
+          placeholder="Please enter your email or phone number"
+          value={values.contact}
           onChange={handleChange}
           onBlur={handleBlur}
-          error={errorParser(errors, touched, "lastName")}
+          error={errorParser(errors, touched, "contact")}
         />
       </div>
-      <div className="grid grid-cols-2 gap-2">
-        <Input
-          label="Email"
-          name="email"
-          placeholder="User Email"
-          value={values.email}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={errorParser(errors, touched, "email")}
-        />
+      <div className="grid grid-cols-1 gap-2">
         {/* <InputGoogleAutocomplete
           label="Location Address (Nearby)"
           onBlur={handleBlur}
@@ -97,34 +78,24 @@ export default function NewPostForm() {
         /> */}
         <Autocomplete
           label="Pickup Location"
-          name="location"
-          placeholder="Pickup Location"
-          value={values.location}
+          name="address"
+          placeholder="Pickup Address"
+          value={values.address}
           onChange={handleChange}
           onBlur={handleBlur}
-          error={errorParser(errors, touched, "location")}
+          error={errorParser(errors, touched, "address")}
         />
       </div>
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-1 gap-2">
         <Input
-          label="Condition"
-          name="condition"
-          placeholder="Item Condition"
+          label="Item Condition"
+          name="description"
+          placeholder="The condition/description of the item"
           required
-          value={values.condition}
+          value={values.description}
           onChange={handleChange}
           onBlur={handleBlur}
-          error={errorParser(errors, touched, "condition")}
-        />
-        <Input
-          label="Contact Info"
-          name="contactInfo"
-          placeholder="Contact Info: phone number or email"
-          required
-          value={values.contactInfo}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={errorParser(errors, touched, "contactInfo")}
+          error={errorParser(errors, touched, "description")}
         />
       </div>
 

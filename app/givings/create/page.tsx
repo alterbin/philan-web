@@ -6,7 +6,7 @@ const page = () => {
   return (
     <div className=" flex flex-col">
       <BackButton title="Back" />
-      <div className="flex justify-center items-center w-full mt-10">
+      <div className="flex justify-center items-center w-full mt-10 mb-48">
         <NewPostForm />
       </div>
     </div>
