@@ -7,6 +7,7 @@ import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import { CreatGivingModal } from "@/src/components/posts/modals";
 import { ClaimGivingModal } from "@/src/components/posts/modals/claim";
+import { Post } from "@/src/services/queries/post/schemas";
 
 export default function Givings() {
   const {
@@ -19,8 +20,8 @@ export default function Givings() {
   const { setModals } = useModals();
   const { ref, inView } = useInView();
 
-  const handleClaim = () => {
-    setModals((prev) => ({ ...prev, enable: true }));
+  const handleClaim = (record: Post) => {
+    setModals((prev) => ({ ...prev, enable: true, record }));
   };
 
   const handleOpen = () => {
@@ -49,7 +50,7 @@ export default function Givings() {
                 description={post.description}
                 images={post.photos}
                 address={post?.address}
-                onClick={handleClaim}
+                onClick={()=>handleClaim(post)}
               />
             ))
           )}

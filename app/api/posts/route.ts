@@ -42,7 +42,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { name, description, photos, address, contact } = body;
 
-    const post = await prisma.giving.create({
+    const giving = await prisma.giving.create({
       data: {
         name,
         description,
@@ -52,7 +52,10 @@ export async function POST(request: Request) {
       },
     });
 
-    return NextResponse.json(post, {
+    return NextResponse.json({
+      data: giving,
+      description: "Created Successfully"
+    }, {
       status: 201,
       statusText: "Post Created Successfully",
     });

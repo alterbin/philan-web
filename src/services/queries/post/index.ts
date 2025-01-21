@@ -8,11 +8,19 @@ import { errorToast, successToast } from "@/src/services/helper";
 
 import api from "../../api";
 import queryKey from "./keys";
-import { ClaimGivingDto, CreateGivingDto, Post, Posts, ReadRequest } from "./schemas";
+import {
+  ClaimGivingDto,
+  CreateGivingDto,
+  Post,
+  Posts,
+  ReadRequest,
+} from "./schemas";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { useModals } from "@/src/contexts/modals";
 
 const BASE_URL = "/api/posts";
+const CLAIM_BASE_URL = "/api/interests";
 
 const fetchPosts = (
   options: ReadRequest = {
@@ -77,7 +85,7 @@ const fetchInfinitePosts = (
 
 const Create = (options = {}) => {
   const queryClient = useQueryClient();
-  const { push } = useRouter();
+  const { setModals } = useModals();
 
   const { mutate, ...response } = useMutation({
     mutationFn: api.post,
@@ -85,8 +93,8 @@ const Create = (options = {}) => {
     ...options,
     onSuccess: async (data: any) => {
       successToast(data.description);
-      push("/");
       await queryClient.invalidateQueries({ queryKey: [queryKey.read] });
+      setModals((old) => ({ ...old, show: false }));
     },
     onError: (err: any) => {
       if (err.response && err.response.data && err.response.data.message) {
@@ -140,7 +148,7 @@ const Del = () => {
 
 const Claim = (options = {}) => {
   const queryClient = useQueryClient();
-  const { push } = useRouter();
+  const { setModals } = useModals();
 
   const { mutate, ...response } = useMutation({
     mutationFn: api.post,
@@ -148,10 +156,11 @@ const Claim = (options = {}) => {
     ...options,
     onSuccess: async (data: any) => {
       successToast(data.description);
-      push("/");
       await queryClient.invalidateQueries({ queryKey: [queryKey.read] });
+      setModals((prev) => ({ ...prev, enable: false }));
     },
     onError: (err: any) => {
+      console.log('errrrrr', err)
       if (err.response && err.response.data && err.response.data.message) {
         errorToast(err.response.data.message);
       } else {
@@ -162,7 +171,7 @@ const Claim = (options = {}) => {
   return {
     ...response,
     mutate: (body: ClaimGivingDto) => {
-      mutate({ url: `${BASE_URL}`, body: { ...body } });
+      mutate({ url: `${CLAIM_BASE_URL}`, body: { ...body } });
     },
   };
 };

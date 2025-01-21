@@ -9,6 +9,7 @@ import { errorParser } from "@/src/utils";
 import { claimGivingsSchema } from "@/src/services/queries/post/schemas";
 import Autocomplete from "../../ui/form-control/input-google-autocomplete/location-auto-complete";
 import { Textarea } from "../../ui/form-control/textarea";
+import { useModals } from "@/src/contexts/modals";
 
 type PostSchema = z.infer<typeof claimGivingsSchema>;
 
@@ -20,6 +21,7 @@ const initialValues = {
 
 export default function ClaimGivingForm() {
   const { mutate, isPending } = postQueries.Claim();
+  const { modals } = useModals();
 
   const formikProps = {
     initialValues,
@@ -27,6 +29,7 @@ export default function ClaimGivingForm() {
     onSubmit: (values: PostSchema) => {
       mutate({
         ...values,
+        givingId: modals?.record?.id
       });
     },
   };

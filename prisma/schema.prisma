@@ -29,4 +29,6 @@ model Interest {
   shippingAddress String
   givingId        String
   givings         Giving   @relation(fields: [givingId], references: [id])
+
+   @@unique([contact, givingId])
 }

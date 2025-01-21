@@ -36,6 +36,7 @@ export type ClaimGivingDto = {
   note: string;
   shippingAddress: string;
   contact: string;
+  givingId: string;
 };
 
 export const createGivingSchema = z.object({

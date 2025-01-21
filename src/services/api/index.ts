@@ -62,7 +62,13 @@ const post = async ({ url, body, auth = true }: Request) => {
     : await fetch(baseUrl + url, options);
 
   if (!response.ok) {
-    throw new Error(`Failed to post: ${response.statusText}`);
+    const errorData = await response.json();
+    console.log('first,', errorData)
+    // throw new Error(`Failed to post: ${response.statusText}`);
+
+    const error = new Error(`Failed to post: ${response.statusText}`);
+    (error as any).response = errorData;
+    throw error;
   }
 
   return response.json();
