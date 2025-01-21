@@ -15,7 +15,6 @@ import {
   Posts,
   ReadRequest,
 } from "./schemas";
-import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { useModals } from "@/src/contexts/modals";
 
@@ -61,7 +60,7 @@ const fetchInfinitePosts = (
   const url = `${BASE_URL}?page=${page}&order=${order}&take=${take}&search=${search}`;
 
   const { data, ...response } = useInfiniteQuery({
-    queryKey: ["givings"],
+    queryKey: [queryKey.read],
     queryFn: ({ pageParam }) => api.get({ url }),
     initialPageParam: 1,
     retry: 1,
@@ -156,7 +155,6 @@ const Claim = (options = {}) => {
     ...options,
     onSuccess: async (data: any) => {
       successToast(data.description);
-      await queryClient.invalidateQueries({ queryKey: [queryKey.read] });
       setModals((prev) => ({ ...prev, enable: false }));
     },
     onError: (err: any) => {

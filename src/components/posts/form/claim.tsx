@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Input } from "../../ui";
+import { Button, Input, Checkbox } from "../../ui";
 import { postQueries } from "@/src/services/queries";
 import { useFormik } from "formik";
 import { z } from "zod";
@@ -17,7 +17,10 @@ const initialValues = {
   note: "",
   shippingAddress: "",
   contact: "",
+  agreedTc: false,
 };
+
+type InitialValues = ReturnType<() => typeof initialValues>;
 
 export default function ClaimGivingForm() {
   const { mutate, isPending } = postQueries.Claim();
@@ -26,16 +29,24 @@ export default function ClaimGivingForm() {
   const formikProps = {
     initialValues,
     validate: zodToFormikAdapter(claimGivingsSchema),
-    onSubmit: (values: PostSchema) => {
+    onSubmit: ({ agreedTc, ...values }: InitialValues) => {
       mutate({
         ...values,
-        givingId: modals?.record?.id
+        givingId: modals?.record?.id,
       });
     },
   };
 
-  const { handleChange, handleSubmit, errors, touched, values, handleBlur } =
-    useFormik<PostSchema>(formikProps);
+  const {
+    handleChange,
+    handleSubmit,
+    errors,
+    touched,
+    values,
+    handleBlur,
+    isValid,
+    dirty,
+  } = useFormik<InitialValues>(formikProps);
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
@@ -71,7 +82,17 @@ export default function ClaimGivingForm() {
         error={errorParser(errors, touched, "note")}
       />
 
-      <Button type="submit" disabled={isPending}>
+      <Checkbox
+        label="I have read and agree to terms and condition"
+        id="agreedTc"
+        onChange={handleChange}
+        checked={values.agreedTc}
+      />
+
+      <Button
+        type="submit"
+        disabled={!isValid || !dirty || !values?.agreedTc || isPending}
+      >
         {isPending ? "Saving..." : "Apply Claim"}
       </Button>
     </form>

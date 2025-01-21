@@ -1,0 +1,54 @@
+@import "../../../../app/globals.css";
+
+.form-check {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  -webkit-box-align: start;
+  /* padding-left: 1.25rem; */
+}
+
+.form-check label {
+  margin-left: 8px;
+  color: #8c8787;
+  font-weight: 400;
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+
+.custom-checkbox {
+  width: 14px;
+  height: 14px;
+  position: relative;
+  cursor: pointer;
+}
+
+.custom-checkbox:checked {
+  background-color: var(--main-color);
+  border-color: var(--main-color);
+}
+
+/* Hide the default checkbox */
+.custom-checkbox::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border-radius: 2px;
+  border: 1px solid #4d4c4c;
+  top: 0;
+  left: 0;
+}
+
+/* Styling the checkmark (tick) */
+.custom-checkbox:checked::before {
+  content: "✔";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  color: white !important;
+  background-color: var(--main-color);
+  border-color: var(--main-color);
+}

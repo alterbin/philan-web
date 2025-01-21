@@ -50,7 +50,7 @@ export default function Givings() {
                 description={post.description}
                 images={post.photos}
                 address={post?.address}
-                onClick={()=>handleClaim(post)}
+                onClick={() => handleClaim(post)}
               />
             ))
           )}

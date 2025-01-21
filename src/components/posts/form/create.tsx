@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Input, InputGoogleAutocomplete } from "../../ui";
+import { Button, Checkbox, Input, InputGoogleAutocomplete } from "../../ui";
 import { postQueries } from "@/src/services/queries";
 import { useFormik } from "formik";
 import { z } from "zod";
@@ -13,11 +13,14 @@ import Autocomplete from "../../ui/form-control/input-google-autocomplete/locati
 
 type PostSchema = z.infer<typeof createGivingSchema>;
 
+type InitialValues = ReturnType<() => typeof initialValues>;
+
 const initialValues = {
   name: "",
   address: "",
   description: "",
   contact: "",
+  agreedTc: false,
 };
 
 export default function NewPostForm() {
@@ -27,7 +30,7 @@ export default function NewPostForm() {
   const formikProps = {
     initialValues,
     validate: zodToFormikAdapter(createGivingSchema),
-    onSubmit: (values: PostSchema) => {
+    onSubmit: ({ agreedTc, ...values }: InitialValues) => {
       mutate({
         ...values,
         photos,
@@ -35,8 +38,16 @@ export default function NewPostForm() {
     },
   };
 
-  const { handleChange, handleSubmit, errors, touched, values, handleBlur } =
-    useFormik<PostSchema>(formikProps);
+  const {
+    handleChange,
+    handleSubmit,
+    errors,
+    touched,
+    values,
+    handleBlur,
+    isValid,
+    dirty,
+  } = useFormik<InitialValues>(formikProps);
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -96,7 +107,19 @@ export default function NewPostForm() {
 
       <ImageUploader photos={photos} setPhotos={setPhotos} />
 
-      <Button type="submit" disabled={isPending && photos?.length < 1}>
+      <Checkbox
+        label="I have read and agree to terms and condition"
+        id="agreedTc"
+        onChange={handleChange}
+        checked={values.agreedTc}
+      />
+
+      <Button
+        type="submit"
+        disabled={
+          (!isValid || !dirty || !values?.agreedTc) || photos?.length < 1
+        }
+      >
         {isPending ? "Saving..." : "Create Post"}
       </Button>
     </form>

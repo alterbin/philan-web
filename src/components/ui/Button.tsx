@@ -24,10 +24,9 @@ export const Button = ({
   color = "black",
   className,
 }: ButtonProps) => {
-  const isInputValueProvided = inputValue !== undefined;
   return (
     <button
-      disabled={isInputValueProvided ? disabled : false}
+      disabled={disabled || false}
       onClick={onClick}
       className={`${className} transition uppercase ${
         size === "sm"
@@ -36,9 +35,7 @@ export const Button = ({
           ? "text-[12px]"
           : ""
       } px-auto py-4 bg-[#CC1717] rounded-[4px] w-full gameStation ${
-        isInputValueProvided && disabled
-          ? "bg-grey-10 cursor-not-allowed"
-          : " hover:bg-opacity-80"
+        disabled ? "bg-gray-400 cursor-not-allowed" : " hover:bg-opacity-80"
       } ${
         variant === "outline"
           ? `bg-white outline outline-current ${
