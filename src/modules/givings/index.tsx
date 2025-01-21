@@ -1,12 +1,12 @@
 "use client";
 import Card from "@/src/components/posts/card";
 import { postQueries } from "@/src/services/queries";
-import { Button, EmptyState, Modal } from "@/src/components/ui";
-import { useRouter } from "next/navigation";
+import { Button, EmptyState } from "@/src/components/ui";
 import { useModals } from "@/src/contexts/modals";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import { CreatGivingModal } from "@/src/components/posts/modals";
+import { ClaimGivingModal } from "@/src/components/posts/modals/claim";
 
 export default function Givings() {
   const {
@@ -16,9 +16,7 @@ export default function Givings() {
     hasNextPage,
     isFetchingNextPage,
   } = postQueries.fetchInfinitePosts();
-  const { mutate } = postQueries.Del();
-  const { modals, setModals } = useModals();
-  const { push } = useRouter();
+  const { setModals } = useModals();
   const { ref, inView } = useInView();
 
   const handleClaim = () => {
@@ -86,14 +84,8 @@ export default function Givings() {
         </div>
       </div>
 
-      {/* <Modal
-        isOpen={modals.show}
-        onClose={handleClose}
-        title="No Permission"
-        message="Ops, you do not have the permission to perform this operation"
-      /> */}
-
       <CreatGivingModal />
+      <ClaimGivingModal />
     </div>
   );
 }

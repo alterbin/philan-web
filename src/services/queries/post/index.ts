@@ -8,7 +8,7 @@ import { errorToast, successToast } from "@/src/services/helper";
 
 import api from "../../api";
 import queryKey from "./keys";
-import { CreateGivingDto, Post, Posts, ReadRequest } from "./schemas";
+import { ClaimGivingDto, CreateGivingDto, Post, Posts, ReadRequest } from "./schemas";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
@@ -52,7 +52,7 @@ const fetchInfinitePosts = (
   const { page, order, take, search } = options;
   const url = `${BASE_URL}?page=${page}&order=${order}&take=${take}&search=${search}`;
 
-  const {data, ...response} = useInfiniteQuery({
+  const { data, ...response } = useInfiniteQuery({
     queryKey: ["givings"],
     queryFn: ({ pageParam }) => api.get({ url }),
     initialPageParam: 1,
@@ -66,7 +66,7 @@ const fetchInfinitePosts = (
 
   const givings = {
     data: (data?.pages.flatMap((page) => page.data) || []) as Post[],
-    total: data?.pages?.[0]?.total || 0 as number,
+    total: (data?.pages?.[0]?.total || 0) as number,
   };
 
   return {
@@ -138,9 +138,39 @@ const Del = () => {
   };
 };
 
+const Claim = (options = {}) => {
+  const queryClient = useQueryClient();
+  const { push } = useRouter();
+
+  const { mutate, ...response } = useMutation({
+    mutationFn: api.post,
+    mutationKey: [queryKey.claim],
+    ...options,
+    onSuccess: async (data: any) => {
+      successToast(data.description);
+      push("/");
+      await queryClient.invalidateQueries({ queryKey: [queryKey.read] });
+    },
+    onError: (err: any) => {
+      if (err.response && err.response.data && err.response.data.message) {
+        errorToast(err.response.data.message);
+      } else {
+        errorToast("Something went wrong");
+      }
+    },
+  });
+  return {
+    ...response,
+    mutate: (body: ClaimGivingDto) => {
+      mutate({ url: `${BASE_URL}`, body: { ...body } });
+    },
+  };
+};
+
 export const postQueries = {
   fetchPosts,
   Create,
   Del,
   fetchInfinitePosts,
+  Claim,
 };

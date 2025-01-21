@@ -6,36 +6,27 @@ import { useFormik } from "formik";
 import { z } from "zod";
 import { zodToFormikAdapter } from "@/src/utils/zodToFormikAdapter";
 import { errorParser } from "@/src/utils";
+import { claimGivingsSchema } from "@/src/services/queries/post/schemas";
+import Autocomplete from "../../ui/input-google-autocomplete/location-auto-complete";
+import { Textarea } from "../../ui/form-control/textarea";
 
-const postSchema = z.object({
-  firstName: z.string().min(1, "First name is required"),
-  lastName: z.string().min(1, "Last name is required"),
-  email: z.string().email("Invalid email format"),
-  location: z.string().min(1, "Location is required"),
-  condition: z.string().min(1, "Condition is required"),
-  contactInfo: z.string().min(1, "Contact info is required"),
-});
-
-type PostSchema = z.infer<typeof postSchema>;
+type PostSchema = z.infer<typeof claimGivingsSchema>;
 
 const initialValues = {
-  firstName: "",
-  lastName: "",
-  proposal: "",
+  note: "",
   shippingAddress: "",
-  contactInfo: "",
+  contact: "",
 };
 
-export default function NewPostForm() {
-  const { mutate, isPending } = postQueries.Create();
+export default function ClaimGivingForm() {
+  const { mutate, isPending } = postQueries.Claim();
 
   const formikProps = {
     initialValues,
-    validate: zodToFormikAdapter(postSchema),
+    validate: zodToFormikAdapter(claimGivingsSchema),
     onSubmit: (values: PostSchema) => {
       mutate({
         ...values,
-        photos: [],
       });
     },
   };
@@ -44,72 +35,41 @@ export default function NewPostForm() {
     useFormik<PostSchema>(formikProps);
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <div className="grid grid-cols-2 gap-2">
-        <Input
-          label="First Name"
-          name="firstName"
-          placeholder="First Name"
-          value={values.firstName}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={errors.firstName}
-        />
-        <Input
-          label="Last Name"
-          name="lastName"
-          placeholder="Last Name"
-          value={values.lastName}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={errorParser(errors, touched, "lastName")}
-        />
-      </div>
-      <div className="grid grid-cols-2 gap-2">
-        <Input
-          label="Email"
-          name="email"
-          placeholder="User Email"
-          value={values.email}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={errorParser(errors, touched, "email")}
-        />
-        <Input
-          label="Pickup Location"
-          name="location"
-          placeholder="Pickup Location"
-          value={values.location}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={errorParser(errors, touched, "location")}
-        />
-      </div>
-      <div className="grid grid-cols-2 gap-2">
-        <Input
-          label="Condition"
-          name="condition"
-          placeholder="Item Condition"
-          required
-          value={values.condition}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={errorParser(errors, touched, "condition")}
-        />
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
+      <div className="grid grid-cols-1 w-full gap-2">
         <Input
           label="Contact Info"
-          name="contactInfo"
-          placeholder="Contact Info: phone number or email"
-          required
-          value={values.contactInfo}
+          name="contact"
+          placeholder="Please enter your email or phone number"
+          value={values.contact}
           onChange={handleChange}
           onBlur={handleBlur}
-          error={errorParser(errors, touched, "contactInfo")}
+          error={errorParser(errors, touched, "contact")}
         />
       </div>
+      <div className="grid grid-cols-1 gap-2">
+        <Autocomplete
+          label="Pickup Location"
+          name="shippingAddress"
+          placeholder="Pickup Address"
+          value={values.shippingAddress}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          error={errorParser(errors, touched, "shippingAddress")}
+        />
+      </div>
+      <Textarea
+        label="Note"
+        name="note"
+        placeholder="Tell us why you need this so bad"
+        value={values.note}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={errorParser(errors, touched, "note")}
+      />
 
       <Button type="submit" disabled={isPending}>
-        {isPending ? "Saving..." : "Create Post"}
+        {isPending ? "Saving..." : "Apply Claim"}
       </Button>
     </form>
   );
