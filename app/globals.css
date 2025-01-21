@@ -113,19 +113,19 @@ body {
 }
 
 .card {
-  @apply bg-[#06382e] shadow-md rounded-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-lg cursor-pointer;
+  @apply shadow-md rounded-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-lg cursor-pointer;
 }
 
 .card img {
-  @apply w-full h-48 object-cover;
+  @apply w-full h-48 object-cover min-h-48;
 }
 
 .card h3 {
-  @apply text-lg font-semibold text-white px-4 mt-2;
+  @apply text-lg font-semibold text-green-90 px-4 mt-5;
 }
 
 .card p {
-  @apply text-sm text-sub_text_color px-4 mb-4;
+  @apply text-sm text-sub_text_color px-4 mb-1;
 }
 
 .card_wrapper {
@@ -388,3 +388,54 @@ body {
   background-color: #007bff;
   color: #fff;
 }
+
+
+.slick-dots {
+  @apply absolute md:!-bottom-[45px] !-bottom-[35px] block w-full p-0 m-0 list-none text-center
+}
+.custom-dot {
+  @apply md:w-[25px] w-4 md:h-[25px] h-4 bg-[#ccc] rounded-full md:border-[5px] border-[3px] border-[#ccc] transition-colors duration-300
+
+}
+
+.slick-active .custom-dot {
+  @apply md:border-[5px] border-[3px] border-[#CC1717]
+}
+/* .slick-track {
+  @apply md:!h-[200px] lg:!h-[300px];
+} */
+
+.slick-track {
+  /* display: flex !important; */
+  /* gap: 10px !important; */
+  /* @apply md:!flex md:!gap-[10px] */
+}
+
+/* .slick-slide > *div {
+  @apply !h-full object-cover;
+} */
+
+.slick-prev,
+.slick-next {
+  @apply z-20 border border-gray-600;
+}
+
+/* .slick-prev:before {
+  content: '<' !important;
+  font-weight: 900;
+} */
+/* .slick-arrow{
+  @apply !hidden
+} */
+
+.slick-prev {
+  @apply !left-2 border border-red-800;
+}
+
+.slick-next {
+  @apply !right-2 border border-red-800;
+}
+
+/* .slick-list {
+  border-radius: 10px !important;
+} */

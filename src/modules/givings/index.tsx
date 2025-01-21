@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useModals } from "@/src/contexts/modals";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
+import { CreatGivingModal } from "@/src/components/posts/modals";
 
 export default function Givings() {
   const {
@@ -20,8 +21,12 @@ export default function Givings() {
   const { push } = useRouter();
   const { ref, inView } = useInView();
 
-  const handleClose = () => {
-    setModals((prev) => ({ ...prev, show: false }));
+  const handleClaim = () => {
+    setModals((prev) => ({ ...prev, enable: true }));
+  };
+
+  const handleOpen = () => {
+    setModals((prev) => ({ ...prev, show: true }));
   };
 
   useEffect(() => {
@@ -35,7 +40,7 @@ export default function Givings() {
     <div>
       <div>
         <h3>All Givings</h3>
-        <div className="card_wrapper">
+        <div className="card_wrapper mt-10">
           {isLoading ? (
             <p>Loading...</p>
           ) : (
@@ -43,9 +48,10 @@ export default function Givings() {
               <Card
                 key={post.id}
                 title={post.name}
-                description={post.condition}
-                image={post.photos[0]}
-                onClick={() => console.log("Show interest")}
+                description={post.description}
+                images={post.photos}
+                address={post?.address}
+                onClick={handleClaim}
               />
             ))
           )}
@@ -68,10 +74,10 @@ export default function Givings() {
             description="Kindly post item you want to give out"
           />
         )}
-        <div className="flex justify-end w-full">
+        <div className="flex justify-end w-full mt-10">
           <Button
             className="!w-[120px]"
-            onClick={() => push("/givings/create")}
+            onClick={handleOpen}
             type="button"
             size="sm"
           >
@@ -80,12 +86,14 @@ export default function Givings() {
         </div>
       </div>
 
-      <Modal
+      {/* <Modal
         isOpen={modals.show}
         onClose={handleClose}
         title="No Permission"
         message="Ops, you do not have the permission to perform this operation"
-      />
+      /> */}
+
+      <CreatGivingModal />
     </div>
   );
 }

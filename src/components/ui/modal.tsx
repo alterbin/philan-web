@@ -81,8 +81,7 @@ export const Modal: React.FC<ModalProps> = ({
                   </button>
                 </div>
                 <div className="bg-[var(--foreground)] pt-4 px-4 md:px-6 md:pt-6 text-text_color py-20 items-center flex justify-center">
-                  {message || "Default message goes here"}
-                  {children}
+                  {children || message} 
                 </div>
               </DialogPanel>
             </TransitionChild>

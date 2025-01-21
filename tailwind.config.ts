@@ -13,7 +13,10 @@ export default {
         foreground: "var(--foreground)",
         sec_color: "var(--sec-color)",
         text_color: "var(--text-color)",
-        sub_text_color: "var(--sub-text-color)"
+        sub_text_color: "var(--sub-text-color)",
+        green: {
+          90: "var(--main-color)"
+        }
       },
     },
   },

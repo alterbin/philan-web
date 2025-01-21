@@ -65,7 +65,7 @@ const fetchInfinitePosts = (
   });
 
   const givings = {
-    data: data?.pages.flatMap((page) => page.data) || [] as Post[],
+    data: (data?.pages.flatMap((page) => page.data) || []) as Post[],
     total: data?.pages?.[0]?.total || 0 as number,
   };
 
