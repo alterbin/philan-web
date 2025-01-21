@@ -1,9 +1,5 @@
 import { SVGProps } from "react";
 
-interface IProps extends SVGProps<SVGSVGElement> {
-  isActive?: boolean;
-}
-
 export function BackArrow(props: SVGProps<SVGSVGElement>) {
   return (
     <svg

@@ -1,14 +1,13 @@
 "use client";
 import Card from "@/src/components/posts/card";
 import { postQueries } from "@/src/services/queries";
-import { Button, Modal } from "@/src/components/ui";
+import { Button, EmptyState, Modal } from "@/src/components/ui";
 import { useRouter } from "next/navigation";
 import { useModals } from "@/src/contexts/modals";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 
 export default function Givings() {
-  // const { data: posts, isLoading } = postQueries.fetchPosts();
   const {
     data: givings,
     isLoading,
@@ -63,10 +62,16 @@ export default function Givings() {
             </div>
           )}
         </div>
+        {givings?.total < 1 && !isLoading && (
+          <EmptyState
+            title="No Givings"
+            description="Kindly post item you want to give out"
+          />
+        )}
         <div className="flex justify-end w-full">
           <Button
             className="!w-[120px]"
-            onClick={() => push("/posts/create")}
+            onClick={() => push("/givings/create")}
             type="button"
             size="sm"
           >

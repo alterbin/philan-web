@@ -1,0 +1,47 @@
+@import "../../../../app/globals.css";
+
+.nodata {
+  max-width: 320px;
+  margin: 3rem auto 0;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.12px;
+  display: flex;
+  padding-top: 1rem;
+  flex-direction: column;
+  text-align: center;
+}
+
+.nodata img {
+  margin-bottom: 3rem;
+}
+
+.nodata svg {
+  margin: 0 auto;
+  margin-bottom: 16px;
+}
+
+.nodata p {
+  color: var(--sub-text-color);
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.head {
+  color: var(--text-color) !important;
+  text-align: center;
+  font-size: 14px !important;
+  font-style: normal;
+  font-weight: 700 !important;
+  line-height: normal;
+  letter-spacing: -0.14px;
+  margin-bottom: 4px !important;
+}
