@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Giving {
+model Given {
   id          String      @id @default(uuid())
   name        String      @default("")
   description String
@@ -27,8 +27,8 @@ model Interest {
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
   shippingAddress String
-  givingId        String
-  givings         Giving   @relation(fields: [givingId], references: [id])
+  givenId         String
+  givings         Given   @relation(fields: [givenId], references: [id])
 
-   @@unique([contact, givingId])
+   @@unique([contact, givenId])
 }

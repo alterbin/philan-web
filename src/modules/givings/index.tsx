@@ -1,26 +1,26 @@
 "use client";
 import Card from "@/src/components/posts/card";
-import { postQueries } from "@/src/services/queries";
+import { givenQueries } from "@/src/services/queries";
 import { Button, EmptyState } from "@/src/components/ui";
 import { useModals } from "@/src/contexts/modals";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import { CreatGivingModal } from "@/src/components/posts/modals";
 import { ClaimGivingModal } from "@/src/components/posts/modals/claim";
-import { Post } from "@/src/services/queries/post/schemas";
+import { Given } from "@/src/services/queries/post/schemas";
 
 export default function Givings() {
   const {
-    data: givings,
+    data: givens,
     isLoading,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = postQueries.fetchInfinitePosts();
+  } = givenQueries.fetchInfiniteGivens();
   const { setModals } = useModals();
   const { ref, inView } = useInView();
 
-  const handleClaim = (record: Post) => {
+  const handleClaim = (record: Given) => {
     setModals((prev) => ({ ...prev, enable: true, record }));
   };
 
@@ -38,12 +38,12 @@ export default function Givings() {
   return (
     <div>
       <div>
-        <h3>All Givings</h3>
+        <h3>All Givens</h3>
         <div className="card_wrapper mt-10">
           {isLoading ? (
             <p>Loading...</p>
           ) : (
-            givings?.data?.map((post) => (
+            givens?.data?.map((post) => (
               <Card
                 key={post.id}
                 title={post.name}
@@ -67,21 +67,23 @@ export default function Givings() {
             </div>
           )}
         </div>
-        {givings?.total < 1 && !isLoading && (
+        {givens?.total < 1 && !isLoading && (
           <EmptyState
-            title="No Givings"
+            title="No Givens"
             description="Kindly post item you want to give out"
           />
         )}
         <div className="flex justify-end w-full mt-10">
-          <Button
-            className="!w-[120px]"
-            onClick={handleOpen}
-            type="button"
-            size="sm"
-          >
-            Create Post
-          </Button>
+          <div className="w-[130px]">
+            <Button
+              className="!w-[125px]"
+              onClick={handleOpen}
+              type="button"
+              size="sm"
+            >
+              Create Given
+            </Button>
+          </div>
         </div>
       </div>
 

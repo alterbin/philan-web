@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export interface Post {
+export interface Given {
   id: string;
   address: string;
   description: string;
@@ -20,8 +20,8 @@ export type CreateGivingDto = {
   address: string;
   contact: string;
 };
-export interface Posts {
-  data: Post[];
+export interface Givens {
+  data: Given[];
   total: number;
 }
 
@@ -36,7 +36,7 @@ export type ClaimGivingDto = {
   note: string;
   shippingAddress: string;
   contact: string;
-  givingId: string;
+  givenId: string;
 };
 
 export const createGivingSchema = z.object({

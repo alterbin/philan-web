@@ -11,7 +11,7 @@ export async function GET(request: Request) {
   const search = url.searchParams.get("search") || "";
   const skip = (page - 1) * take;
 
-  const where: Prisma.GivingWhereInput = search
+  const where: Prisma.GivenWhereInput = search
     ? {
         OR: [
           { name: { contains: search, mode: "insensitive" } },
@@ -22,8 +22,8 @@ export async function GET(request: Request) {
     : {};
 
   const [total, data] = await Promise.all([
-    prisma.giving.count({ where }),
-    prisma.giving.findMany({
+    prisma.given.count({ where }),
+    prisma.given.findMany({
       where,
       skip,
       take,
@@ -33,7 +33,7 @@ export async function GET(request: Request) {
   return NextResponse.json({
     total,
     data,
-    message: "Givings fetched successfully",
+    message: "Givens fetched successfully",
   });
 }
 
@@ -42,7 +42,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { name, description, photos, address, contact } = body;
 
-    const giving = await prisma.giving.create({
+    const given = await prisma.given.create({
       data: {
         name,
         description,
@@ -53,7 +53,7 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({
-      data: giving,
+      data: given,
       description: "Created Successfully"
     }, {
       status: 201,
@@ -62,7 +62,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("Error creating post:", error);
     return NextResponse.json(
-      { error: "Failed to create post. Please try again." },
+      { error: "Failed to create given. Please try again." },
       { status: 500 }
     );
   }
@@ -96,7 +96,7 @@ export async function POST(request: Request) {
 
 export async function DELETE() {
   try {
-    const deletedPosts = await prisma.giving.deleteMany({
+    const deletedPosts = await prisma.given.deleteMany({
       where: {
         OR: [{ name: "" }],
       },

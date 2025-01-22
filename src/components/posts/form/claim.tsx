@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, Input, Checkbox } from "../../ui";
-import { postQueries } from "@/src/services/queries";
+import { givenQueries } from "@/src/services/queries";
 import { useFormik } from "formik";
 import { z } from "zod";
 import { zodToFormikAdapter } from "@/src/utils/zodToFormikAdapter";
@@ -23,7 +23,7 @@ const initialValues = {
 type InitialValues = ReturnType<() => typeof initialValues>;
 
 export default function ClaimGivingForm() {
-  const { mutate, isPending } = postQueries.Claim();
+  const { mutate, isPending } = givenQueries.Claim();
   const { modals } = useModals();
 
   const formikProps = {
@@ -32,7 +32,7 @@ export default function ClaimGivingForm() {
     onSubmit: ({ agreedTc, ...values }: InitialValues) => {
       mutate({
         ...values,
-        givingId: modals?.record?.id,
+        givenId: modals?.record?.id,
       });
     },
   };

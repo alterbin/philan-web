@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { note, shippingAddress, contact, givingId } = body;
+    const { note, shippingAddress, contact, givenId } = body;
 
     // Validate required fields
     if (!note || typeof note !== "string" || note.trim() === "") {
@@ -38,12 +38,12 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!givingId || typeof givingId !== "string") {
+    if (!givenId || typeof givenId !== "string") {
       return NextResponse.json(
         {
           response: {
             message:
-              "Invalid or missing 'givingId'. It must be a valid UUID string.",
+              "Invalid or missing 'givenId'. It must be a valid UUID string.",
             status: 400,
           },
         },
@@ -51,16 +51,16 @@ export async function POST(request: Request) {
       );
     }
 
-    // Check if the associated Giving record exists
-    const givingExists = await prisma.giving.findUnique({
-      where: { id: givingId },
+    // Check if the associated Given record exists
+    const givingExists = await prisma.given.findUnique({
+      where: { id: givenId },
     });
 
     if (!givingExists) {
       return NextResponse.json(
         {
           response: {
-            message: "The specified 'givingId' does not exist.",
+            message: "The specified 'givenId' does not exist.",
             status: 404,
           },
         },
@@ -72,7 +72,7 @@ export async function POST(request: Request) {
     const alreadyAppliedUser = await prisma.interest.findFirst({
       where: {
         contact: contact,
-        givingId: givingId,
+        givenId: givenId,
       },
     });
 
@@ -95,7 +95,7 @@ export async function POST(request: Request) {
         note: note.trim(),
         shippingAddress: shippingAddress.trim(),
         contact: contact.trim(),
-        givingId,
+        givenId,
       },
     });
 

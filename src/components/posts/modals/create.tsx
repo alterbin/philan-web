@@ -11,7 +11,7 @@ export const CreatGivingModal = () => {
   };
 
   return (
-    <Modal title="Create Giving" isOpen={modals.show} onClose={handleClose}>
+    <Modal title="Create Given" isOpen={modals.show} onClose={handleClose}>
       <NewPostForm />
     </Modal>
   );

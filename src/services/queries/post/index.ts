@@ -11,17 +11,17 @@ import queryKey from "./keys";
 import {
   ClaimGivingDto,
   CreateGivingDto,
-  Post,
-  Posts,
+  Given,
+  Givens,
   ReadRequest,
 } from "./schemas";
 import toast from "react-hot-toast";
 import { useModals } from "@/src/contexts/modals";
 
-const BASE_URL = "/api/posts";
+const BASE_URL = "/api/given";
 const CLAIM_BASE_URL = "/api/interests";
 
-const fetchPosts = (
+const fetchGivens = (
   options: ReadRequest = {
     page: 1,
     order: "desc",
@@ -44,11 +44,11 @@ const fetchPosts = (
 
   return {
     ...response,
-    data: response?.data as Posts,
+    data: response?.data as Givens,
   };
 };
 
-const fetchInfinitePosts = (
+const fetchInfiniteGivens = (
   options: ReadRequest = {
     page: 1,
     order: "ASC",
@@ -72,7 +72,7 @@ const fetchInfinitePosts = (
   });
 
   const givings = {
-    data: (data?.pages.flatMap((page) => page.data) || []) as Post[],
+    data: (data?.pages.flatMap((page) => page.data) || []) as Given[],
     total: (data?.pages?.[0]?.total || 0) as number,
   };
 
@@ -173,10 +173,10 @@ const Claim = (options = {}) => {
   };
 };
 
-export const postQueries = {
-  fetchPosts,
+export const givenQueries = {
+  fetchGivens,
   Create,
   Del,
-  fetchInfinitePosts,
+  fetchInfiniteGivens,
   Claim,
 };

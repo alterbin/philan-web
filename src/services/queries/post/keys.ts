@@ -1,6 +1,6 @@
 import { getQueryKeys } from '@/src/services/helper';
 
-const namespace = 'givings';
+const namespace = 'givens';
 
 export default {
   ...getQueryKeys(namespace),

@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, Checkbox, Input, InputGoogleAutocomplete } from "../../ui";
-import { postQueries } from "@/src/services/queries";
+import { givenQueries } from "@/src/services/queries";
 import { useFormik } from "formik";
 import { z } from "zod";
 import { zodToFormikAdapter } from "@/src/utils/zodToFormikAdapter";
@@ -24,7 +24,7 @@ const initialValues = {
 };
 
 export default function NewPostForm() {
-  const { mutate, isPending } = postQueries.Create();
+  const { mutate, isPending } = givenQueries.Create();
   const [photos, setPhotos] = useState<string[]>([]);
 
   const formikProps = {
@@ -120,7 +120,7 @@ export default function NewPostForm() {
           (!isValid || !dirty || !values?.agreedTc) || photos?.length < 1
         }
       >
-        {isPending ? "Saving..." : "Create Post"}
+        {isPending ? "Saving..." : "Create Given"}
       </Button>
     </form>
   );
