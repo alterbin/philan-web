@@ -158,9 +158,8 @@ const Claim = (options = {}) => {
       setModals((prev) => ({ ...prev, enable: false }));
     },
     onError: (err: any) => {
-      console.log('errrrrr', err)
-      if (err.response && err.response.data && err.response.data.message) {
-        errorToast(err.response.data.message);
+      if (err?.response) {
+        errorToast(err?.response?.message);
       } else {
         errorToast("Something went wrong");
       }

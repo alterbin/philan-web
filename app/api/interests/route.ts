@@ -41,8 +41,11 @@ export async function POST(request: Request) {
     if (!givingId || typeof givingId !== "string") {
       return NextResponse.json(
         {
-          error:
-            "Invalid or missing 'givingId'. It must be a valid UUID string.",
+          response: {
+            message:
+              "Invalid or missing 'givingId'. It must be a valid UUID string.",
+            status: 400,
+          },
         },
         { status: 400 }
       );
@@ -55,7 +58,12 @@ export async function POST(request: Request) {
 
     if (!givingExists) {
       return NextResponse.json(
-        { error: "The specified 'givingId' does not exist." },
+        {
+          response: {
+            message: "The specified 'givingId' does not exist.",
+            status: 404,
+          },
+        },
         { status: 404 }
       );
     }
@@ -71,7 +79,11 @@ export async function POST(request: Request) {
     if (alreadyAppliedUser && givingExists) {
       return NextResponse.json(
         {
-          error: "You have applied before, kindly wait till we fininsh review",
+          response: {
+            message:
+              "You have applied before, kindly wait till we fininsh review",
+            status: 409,
+          },
         },
         { status: 409 }
       );
@@ -100,15 +112,24 @@ export async function POST(request: Request) {
     if (error.code === "P2002") {
       return NextResponse.json(
         {
-          error:
-            "A similar interest record already exists. Please check your input.",
+          response: {
+            message:
+              "A similar interest record already exists. Please check your input.",
+            status: 409,
+          },
         },
         { status: 409 }
       );
     }
 
     return NextResponse.json(
-      { error: "An unexpected error occurred while processing your request." },
+      {
+        response: {
+          message:
+            "An unexpected error occurred while processing your request.",
+          status: 500,
+        },
+      },
       { status: 500 }
     );
   }
