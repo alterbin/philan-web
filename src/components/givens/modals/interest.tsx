@@ -1,9 +1,9 @@
 import { useModals } from "@/src/contexts/modals";
 import React from "react";
 import { Modal } from "../../ui";
-import ClaimGivingForm from "../form/claim";
+import ClaimGivingForm from "../form/interest";
 
-export const ClaimGivingModal = () => {
+export const GivenInterestModal = () => {
   const { modals, setModals } = useModals();
 
   const handleClose = () => {

@@ -6,12 +6,12 @@ import { useFormik } from "formik";
 import { z } from "zod";
 import { zodToFormikAdapter } from "@/src/utils/zodToFormikAdapter";
 import { errorParser } from "@/src/utils";
-import { createGivingSchema } from "@/src/services/queries/post/schemas";
+import { createGivenSchema } from "@/src/services/queries/givens/schemas";
 import { useState } from "react";
 import ImageUploader from "../upload";
 import Autocomplete from "../../ui/form-control/input-google-autocomplete/location-auto-complete";
 
-type PostSchema = z.infer<typeof createGivingSchema>;
+type PostSchema = z.infer<typeof createGivenSchema>;
 
 type InitialValues = ReturnType<() => typeof initialValues>;
 
@@ -23,13 +23,13 @@ const initialValues = {
   agreedTc: false,
 };
 
-export default function NewPostForm() {
+export default function NewGivenForm() {
   const { mutate, isPending } = givenQueries.Create();
   const [photos, setPhotos] = useState<string[]>([]);
 
   const formikProps = {
     initialValues,
-    validate: zodToFormikAdapter(createGivingSchema),
+    validate: zodToFormikAdapter(createGivenSchema),
     onSubmit: ({ agreedTc, ...values }: InitialValues) => {
       mutate({
         ...values,
@@ -116,9 +116,7 @@ export default function NewPostForm() {
 
       <Button
         type="submit"
-        disabled={
-          (!isValid || !dirty || !values?.agreedTc) || photos?.length < 1
-        }
+        disabled={!isValid || !dirty || !values?.agreedTc || photos?.length < 1}
       >
         {isPending ? "Saving..." : "Create Given"}
       </Button>

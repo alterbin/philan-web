@@ -145,7 +145,7 @@ const Del = () => {
   };
 };
 
-const Claim = (options = {}) => {
+const Interest = (options = {}) => {
   const queryClient = useQueryClient();
   const { setModals } = useModals();
 
@@ -178,5 +178,5 @@ export const givenQueries = {
   Create,
   Del,
   fetchInfiniteGivens,
-  Claim,
+  Interest,
 };

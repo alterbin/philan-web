@@ -11,7 +11,7 @@ export async function GET(request: Request) {
   const search = url.searchParams.get("search") || "";
   const skip = (page - 1) * take;
 
-  const where: Prisma.GivenWhereInput = search
+  const where: Prisma.givensWhereInput = search
     ? {
         OR: [
           { name: { contains: search, mode: "insensitive" } },
@@ -22,8 +22,8 @@ export async function GET(request: Request) {
     : {};
 
   const [total, data] = await Promise.all([
-    prisma.given.count({ where }),
-    prisma.given.findMany({
+    prisma.givens.count({ where }),
+    prisma.givens.findMany({
       where,
       skip,
       take,
@@ -42,7 +42,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { name, description, photos, address, contact } = body;
 
-    const given = await prisma.given.create({
+    const given = await prisma.givens.create({
       data: {
         name,
         description,
@@ -96,7 +96,7 @@ export async function POST(request: Request) {
 
 export async function DELETE() {
   try {
-    const deletedPosts = await prisma.given.deleteMany({
+    const deletedPosts = await prisma.givens.deleteMany({
       where: {
         OR: [{ name: "" }],
       },

@@ -1,13 +1,12 @@
 "use client";
-import Card from "@/src/components/posts/card";
+import Card from "@/src/components/givens/card";
 import { givenQueries } from "@/src/services/queries";
 import { Button, EmptyState } from "@/src/components/ui";
 import { useModals } from "@/src/contexts/modals";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
-import { CreatGivingModal } from "@/src/components/posts/modals";
-import { ClaimGivingModal } from "@/src/components/posts/modals/claim";
-import { Given } from "@/src/services/queries/post/schemas";
+import { CreatGivenModal, GivenInterestModal } from "@/src/components/givens/modals";
+import { Given } from "@/src/services/queries/givens/schemas";
 
 export default function Givings() {
   const {
@@ -87,8 +86,8 @@ export default function Givings() {
         </div>
       </div>
 
-      <CreatGivingModal />
-      <ClaimGivingModal />
+      <CreatGivenModal />
+      <GivenInterestModal />
     </div>
   );
 }

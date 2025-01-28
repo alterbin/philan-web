@@ -1,4 +1,4 @@
-import NewPostForm from "@/src/components/posts/form/create";
+import NewPostForm from "@/src/components/givens/form/create";
 import { BackButton } from "@/src/components/ui";
 import React from "react";
 

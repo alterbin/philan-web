@@ -1,4 +1,4 @@
-import Givings from '@/src/modules/givings'
+import Givings from '@/src/modules/givens'
 import React from 'react'
 
 const GivingsPage = () => {

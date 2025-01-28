@@ -52,7 +52,7 @@ export async function POST(request: Request) {
     }
 
     // Check if the associated Given record exists
-    const givingExists = await prisma.given.findUnique({
+    const givingExists = await prisma.given_interests.findUnique({
       where: { id: givenId },
     });
 
@@ -69,7 +69,7 @@ export async function POST(request: Request) {
     }
 
     //check if contact has shown interest before
-    const alreadyAppliedUser = await prisma.interest.findFirst({
+    const alreadyAppliedUser = await prisma.given_interests.findFirst({
       where: {
         contact: contact,
         givenId: givenId,
@@ -90,7 +90,7 @@ export async function POST(request: Request) {
     }
 
     // Create the Interest record
-    const interest = await prisma.interest.create({
+    const interest = await prisma.given_interests.create({
       data: {
         note: note.trim(),
         shippingAddress: shippingAddress.trim(),

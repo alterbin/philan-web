@@ -39,14 +39,14 @@ export type ClaimGivingDto = {
   givenId: string;
 };
 
-export const createGivingSchema = z.object({
+export const createGivenSchema = z.object({
   name: z.string().min(1, "Name is required"),
   address: z.string().min(1, "Address is required"),
   description: z.string().min(1, "Description is required"),
   contact: z.string().min(1, "Contact info is required"),
 });
 
-export const claimGivingsSchema = z.object({
+export const givenInterestsSchema = z.object({
   shippingAddress: z.string().min(1, "Shipping Address is required"),
   note: z.string().min(1, "Note is required"),
   contact: z.string().min(1, "Contact info is required"),

@@ -6,12 +6,12 @@ import { useFormik } from "formik";
 import { z } from "zod";
 import { zodToFormikAdapter } from "@/src/utils/zodToFormikAdapter";
 import { errorParser } from "@/src/utils";
-import { claimGivingsSchema } from "@/src/services/queries/post/schemas";
+import { givenInterestsSchema } from "@/src/services/queries/givens/schemas";
 import Autocomplete from "../../ui/form-control/input-google-autocomplete/location-auto-complete";
 import { Textarea } from "../../ui/form-control/textarea";
 import { useModals } from "@/src/contexts/modals";
 
-type PostSchema = z.infer<typeof claimGivingsSchema>;
+type PostSchema = z.infer<typeof givenInterestsSchema>;
 
 const initialValues = {
   note: "",
@@ -22,13 +22,13 @@ const initialValues = {
 
 type InitialValues = ReturnType<() => typeof initialValues>;
 
-export default function ClaimGivingForm() {
-  const { mutate, isPending } = givenQueries.Claim();
+export default function GivenInterestForm() {
+  const { mutate, isPending } = givenQueries.Interest();
   const { modals } = useModals();
 
   const formikProps = {
     initialValues,
-    validate: zodToFormikAdapter(claimGivingsSchema),
+    validate: zodToFormikAdapter(givenInterestsSchema),
     onSubmit: ({ agreedTc, ...values }: InitialValues) => {
       mutate({
         ...values,
