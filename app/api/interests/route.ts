@@ -52,7 +52,7 @@ export async function POST(request: Request) {
     }
 
     // Check if the associated Given record exists
-    const givingExists = await prisma.given_interests.findUnique({
+    const givingExists = await prisma.givens.findUnique({
       where: { id: givenId },
     });
 
