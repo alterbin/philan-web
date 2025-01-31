@@ -1,7 +1,7 @@
 import { useState, ChangeEvent } from "react";
-import { Input } from "../ui";
 import toast from "react-hot-toast";
-import { Trash } from "../svgs/icons/trash";
+import { Input } from "@/src/components/ui";
+import { Trash } from "@/src/components/svgs/icons";
 
 interface IProps {
   photos: string[];

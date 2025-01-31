@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Checkbox, Input, InputGoogleAutocomplete } from "../../ui";
+import { Button, Checkbox, InputGoogleAutocomplete, Input } from "@/src/components/ui";
 import { givenQueries } from "@/src/services/queries";
 import { useFormik } from "formik";
 import { z } from "zod";
@@ -9,7 +9,8 @@ import { errorParser } from "@/src/utils";
 import { createGivenSchema } from "@/src/services/queries/givens/schemas";
 import { useState } from "react";
 import ImageUploader from "../upload";
-import Autocomplete from "../../ui/form-control/input-google-autocomplete/location-auto-complete";
+import Autocomplete from "@/src/components/ui/form-control/input-google-autocomplete/location-auto-complete";
+
 
 type PostSchema = z.infer<typeof createGivenSchema>;
 

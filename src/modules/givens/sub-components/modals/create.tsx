@@ -1,6 +1,6 @@
 import { useModals } from "@/src/contexts/modals";
 import React from "react";
-import { Modal } from "../../ui";
+import { Modal } from "@/src/components/ui";
 import NewGivenForm from "../form/create";
 
 export const CreatGivenModal = () => {

@@ -11,7 +11,7 @@ export default function Home() {
       <div className="flex justify-center w-full mt-10">
         <Button
           className="!w-[120px]"
-          onClick={()=>push('/givings')}
+          onClick={()=>push('/givens')}
           type="button"
           size="sm"
         >

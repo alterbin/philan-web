@@ -1,8 +1,8 @@
 import React from "react";
 import Slider from "react-slick";
-import { Button } from "../ui";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Button } from "@/src/components/ui";
 
 interface CardProps {
   title: string;

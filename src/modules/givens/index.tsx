@@ -1,12 +1,12 @@
 "use client";
-import Card from "@/src/components/givens/card";
 import { givenQueries } from "@/src/services/queries";
 import { Button, EmptyState } from "@/src/components/ui";
 import { useModals } from "@/src/contexts/modals";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
-import { CreatGivenModal, GivenInterestModal } from "@/src/components/givens/modals";
+import { CreatGivenModal, GivenInterestModal } from "./sub-components/modals";
 import { Given } from "@/src/services/queries/givens/schemas";
+import Card from "./sub-components/card";
 
 export default function Givings() {
   const {

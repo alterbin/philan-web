@@ -1,15 +1,14 @@
 "use client";
 
-import { Button, Input, Checkbox } from "../../ui";
 import { givenQueries } from "@/src/services/queries";
 import { useFormik } from "formik";
 import { z } from "zod";
 import { zodToFormikAdapter } from "@/src/utils/zodToFormikAdapter";
 import { errorParser } from "@/src/utils";
 import { givenInterestsSchema } from "@/src/services/queries/givens/schemas";
-import Autocomplete from "../../ui/form-control/input-google-autocomplete/location-auto-complete";
-import { Textarea } from "../../ui/form-control/textarea";
 import { useModals } from "@/src/contexts/modals";
+import Autocomplete from "@/src/components/ui/form-control/input-google-autocomplete/location-auto-complete";
+import { Textarea, Button, Input, Checkbox } from "@/src/components/ui";
 
 type PostSchema = z.infer<typeof givenInterestsSchema>;
 
