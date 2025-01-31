@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCombobox } from "downshift";
 import { Input } from "../input";
+import { useDebounce } from "@/src/hooks";
 
 interface AutocompleteProps {
   name: string;
@@ -22,19 +23,28 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
   error,
 }) => {
   const [items, setItems] = useState<string[]>([]);
+  const debouncedSearch = useDebounce(value, 700);
 
-  const fetchSuggestions = async (inputValue: string) => {
-    if (!inputValue) {
-      setItems([]);
-      return;
-    }
+  useEffect(() => {
+    const fetchSuggestions = async () => {
+      if (!debouncedSearch) {
+        setItems([]);
+        return;
+      }
 
-    const response = await fetch(
-      `https://nominatim.openstreetmap.org/search?q=${inputValue}&format=json&addressdetails=1`
-    );
-    const data = await response.json();
-    setItems(data.map((item: any) => item.display_name));
-  };
+      try {
+        const response = await fetch(
+          `https://nominatim.openstreetmap.org/search?q=${debouncedSearch}&format=json&addressdetails=1`
+        );
+        const data = await response.json();
+        setItems(data.map((item: any) => item.display_name));
+      } catch (error) {
+        console.error("Error fetching suggestions:", error);
+      }
+    };
+
+    fetchSuggestions();
+  }, [debouncedSearch]);
 
   const {
     isOpen,
@@ -50,7 +60,6 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
         target: { name, value: inputValue || "" },
       } as React.ChangeEvent<HTMLInputElement>;
       onChange(event);
-      fetchSuggestions(inputValue || "");
     },
     itemToString: (item) => item || "",
     onSelectedItemChange: ({ selectedItem }) => {
