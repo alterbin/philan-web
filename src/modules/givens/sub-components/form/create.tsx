@@ -51,7 +51,7 @@ export default function NewGivenForm() {
   } = useFormik<InitialValues>(formikProps);
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
       <div className="grid grid-cols-2 gap-2">
         <Input
           label="Item Name"
