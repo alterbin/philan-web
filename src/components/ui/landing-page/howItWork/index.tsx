@@ -4,6 +4,7 @@ import Lens from "../../../../../public/media/how-it-works/lens.png";
 import Gift from "../../../../../public/media/how-it-works/gift.png";
 import HoldPhone from "../../../../../public/media/how-it-works/phone.png";
 import Image, { StaticImageData } from "next/image";
+import routes from "@/src/utils/routes";
 
 interface IProps {
   icon: StaticImageData;
@@ -30,7 +31,7 @@ export const HowItWorks = () => {
     },
   ];
   return (
-    <div className="lg:my-6 my-28">
+    <div className="lg:my-6 my-28" id={routes.home.hash.features}>
       <div className="center w-full my-5">
         <Typography variant="h1" fontWeight="bd" className="text-4xl">
           How It works

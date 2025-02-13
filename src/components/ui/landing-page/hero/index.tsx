@@ -9,6 +9,7 @@ import Clothes from "../../../../../public/media/hero/clothes.png";
 import Bible from "../../../../../public/media/hero/bible.png";
 import Junks from "../../../../../public/media/hero/junks.png";
 import Image from "next/image";
+import routes from "@/src/utils/routes";
 
 export const Hero = () => {
   const { push } = useRouter();
@@ -16,7 +17,7 @@ export const Hero = () => {
   const imageStyles =
     "w-full h-full object-cover rounded-[20px] transition-all duration-500 animate-pulseGray hover:grayscale-0 hover:animate-shake hover:scale-105";
   return (
-    <div className="bg-[#F6F8FA] app_landing_page__px max-h-[90vh] h-full mt-2 py-20">
+    <div className="bg-[#F6F8FA] app_landing_page__px max-h-[90vh] h-full mt-2 py-20" id={routes.home.hash.home}>
       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[555px] gap-5 ">
         <div className="w-[90%] my-auto flex flex-col gap-6">
           <Typography
@@ -30,7 +31,7 @@ export const Hero = () => {
           <Typography variant="p" color="main-color" className="text-xl">
             Join Philan to give old items a new story.
           </Typography>
-          <div className="flex w-full">
+          <div className="flex w-full animate-bounce hover:animate-shake">
             <Button
               className="!max-w-[300px] w-full h-[65px] rounded-2xl font-semibold"
               onClick={() => push("/givens")}
@@ -40,8 +41,8 @@ export const Hero = () => {
               Get Started
             </Button>
           </div>
-              </div>
-              
+        </div>
+
         <div className="flex gap-3">
           <div className="h-full flex flex-col gap-3">
             <div className="max-w-[346px] h-2/3 center w-full">
