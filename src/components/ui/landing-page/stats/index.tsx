@@ -1,5 +1,4 @@
 import React from "react";
-import "./styles.css";
 import Typography from "../../typography";
 import { Button } from "../../Button";
 import { useRouter } from "next/navigation";
