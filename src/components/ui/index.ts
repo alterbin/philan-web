@@ -5,6 +5,5 @@ export { Modal } from "./modal";
 export { Checkbox } from "./checkbox";
 export { Spinner } from "./spinner";
 export { EmptyState } from "./empty-state";
-export { ContactUs } from "./contact-us";
-export { Stats } from "./stats";
+export { Stats } from "./landing-page/stats";
 export * from "./navbar";

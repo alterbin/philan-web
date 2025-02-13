@@ -1,9 +1,9 @@
 import React from "react";
 import "./styles.css";
-import Typography from "../typography";
-import { Button } from "../Button";
+import Typography from "../../typography";
+import { Button } from "../../Button";
 import { useRouter } from "next/navigation";
-import { CheckCircle, Gift, Recycle } from "../../svgs/icons";
+import { CheckCircle, Gift, Recycle } from "../../../svgs/icons";
 
 interface IProps {
   icon: React.JSX.Element;
@@ -51,7 +51,8 @@ export const Stats = () => {
                 className="text-black-60 text-5xl"
                 fontWeight="bd"
               >
-                {item.total}{item?.unit}
+                {item.total}
+                {item?.unit}
               </Typography>
               <Typography variant="p" fontWeight="md" className="text-xl">
                 {item.title}

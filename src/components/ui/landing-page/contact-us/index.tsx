@@ -1,9 +1,9 @@
 import React from "react";
-import Typography from "../typography";
 import routes from "@/src/utils/routes";
-import { Call, Message } from "../../svgs/icons";
 import config from "@/src/utils/config";
 import "./styles.css";
+import Typography from "../../typography";
+import { Call, Message } from "@/src/components/svgs/icons";
 
 export const ContactUs = () => {
   return (
