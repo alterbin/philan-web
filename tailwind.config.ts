@@ -8,6 +8,16 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        poppins: "var(--font-poppins), sans-serif",
+      },
+      fontWeight: {
+        lt: "300", // Light
+        rg: "400", // Regular
+        md: "500", // Medium
+        sb: "600", // Semi-bold
+        bd: "700", // Bold
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
@@ -15,8 +25,8 @@ export default {
         text_color: "var(--text-color)",
         sub_text_color: "var(--sub-text-color)",
         green: {
-          90: "var(--main-color)"
-        }
+          90: "var(--main-color)",
+        },
       },
     },
   },

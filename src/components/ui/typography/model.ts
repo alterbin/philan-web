@@ -17,7 +17,7 @@ export interface IProps {
   align?: Align
   children?: ReactNode
   color?: keyof Color
-  fontFamily?: 'GeneralSans' | 'TrenchSlab'
+  fontFamily?: "poppins" | "inter"
   fontWeight?: FontWeight
   text?: string
   tooltip?: string | boolean
