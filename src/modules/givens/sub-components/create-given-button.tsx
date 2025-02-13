@@ -14,7 +14,7 @@ export const CreateGivenButton = () => {
         onClick={handleOpen}
         className="fixed bottom-40 right-4 bg-green-90 hover:opacity-75 rounded-full p-2 shadow-2xl w-[80px] h-[80px] flex items-center justify-center transition-all ease-in-out duration-150 z-50"
       >
-        <span>
+        <span className="animate-bounce">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="50"

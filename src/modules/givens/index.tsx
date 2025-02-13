@@ -32,6 +32,11 @@ export default function Givens() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView, hasNextPage]);
 
+  const repeatedData = Array.from({ length: 24 }, (_, index) => {
+    const post = givens?.data?.[index % givens?.data?.length]; // Cycle through the existing data
+    return { ...post, id: `${post?.id}-${index}` }; // Ensure unique IDs
+  });
+
   return (
     <div>
       <div>
@@ -60,6 +65,7 @@ export default function Givens() {
               placeholder="Search givens..."
               handleChange={(val) => setSearchTerm(val)}
               value={searchTerm}
+              className="h-[46px]"
             />
 
             <Dropdown

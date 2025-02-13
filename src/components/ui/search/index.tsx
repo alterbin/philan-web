@@ -39,7 +39,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
 
   return (
     <div
-      className={`flex p-3 gap-2 bg-white rounded-[10px] border border-solid border-[#E4E7EC] shadow-sm min-w-[300px] ${className}`}
+      className={`flex px-3 gap-2 bg-white rounded-[10px] border border-solid border-[#E4E7EC] shadow-sm min-w-[300px] ${className}`}
       ref={searchRef}
       {...props}
     >
