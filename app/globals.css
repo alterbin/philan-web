@@ -7,7 +7,7 @@
   --foreground: #171717;
   --main-color: #06382e;
   --sec-color: #dd9940;
-  --text-color: #052A23;
+  --text-color: #052a23;
   --sub-text-color: #979797;
   --sec-text-color: #555555;
   --max-width: 1100px;
@@ -72,7 +72,7 @@
 body {
   font-family: var(--font-poppins), sans-serif;
   color: rgb(var(--text-color));
-  background: #F9F8F7;
+  background: #f9f8f7;
   /* background: linear-gradient(
       to bottom,
       transparent,
@@ -113,30 +113,56 @@ body {
   background-color: var(--sub-text-color) !important;
 }
 
-.card {
-  @apply shadow-md rounded-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-lg cursor-pointer;
-}
-
-.card img {
-  @apply w-full h-48 object-cover min-h-48;
-}
-
-.card h3 {
-  @apply text-lg font-semibold text-green-90 px-4 mt-5;
-}
-
-.card p {
-  @apply text-sm text-sub_text_color px-4 mb-1;
-}
-
-.center{
-  @apply flex justify-center items-center
+.center {
+  @apply flex justify-center items-center;
 }
 
 .card_wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   gap: 30px;
+}
+
+.app_card__location {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.card_text {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 150px;
+  overflow: hidden;
+}
+.app_claim_btn {
+  border-radius: 10px;
+  display: flex;
+  gap: 8px;
+  white-space: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.app_claim_btn_icon {
+  margin-top: auto;
+  margin-bottom: auto;
+  @apply animate-rotate45
+}
+.app_claim_btn_text {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.app_card_desc{
+  font-size: 15px;
+  font-weight: 300;
+  color: #808080;
+}
+.app_card_desc_text{
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .backwrap {
@@ -214,8 +240,8 @@ body {
   border-radius: 4px;
   z-index: 10;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
- max-height: 300px;
- overflow-y: auto;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .autosuggest__suggestion {
@@ -228,53 +254,58 @@ body {
   color: #fff;
 }
 
+.custom-dots li button:before {
+  font-size: 10px !important; /* Increase dot size */
+  opacity: 0.25 !important;
+  color: white !important;
+  transform: scale(1.5); 
+}
+
+/* Reduce dot spacing */
+.custom-dots li {
+  margin-right: 2px !important; /* Reduce gap between dots */
+}
 
 .slick-dots {
-  @apply absolute md:!-bottom-[45px] !-bottom-[35px] block w-full p-0 m-0 list-none text-center
-}
-.custom-dot {
-  @apply md:w-[25px] w-4 md:h-[25px] h-4 bg-[#ccc] rounded-full md:border-[5px] border-[3px] border-[#ccc] transition-colors duration-300
-
+  @apply absolute md:!bottom-10 !-bottom-[20px] w-full p-0 m-0 list-none text-center flex justify-center gap-2;
 }
 
-.slick-active .custom-dot {
-  @apply md:border-[5px] border-[3px] border-[#CC1717]
-}
-/* .slick-track {
-  @apply md:!h-[200px] lg:!h-[300px];
-} */
-
-.slick-track {
-  /* display: flex !important; */
-  /* gap: 10px !important; */
-  /* @apply md:!flex md:!gap-[10px] */
+.slick-dots li {
+  @apply inline-block;
 }
 
-/* .slick-slide > *div {
-  @apply !h-full object-cover;
-} */
+/* Custom Dot Styling */
+.slick-dots li button {
+  @apply w-4 h-4 md:w-5 md:h-5 bg-gray-500 rounded-full border-none transition-all duration-300 ease-in-out;
+}
 
+/* Active Dot */
+.slick-dots li.slick-active button {
+  @apply bg-white;
+}
+
+/* Hide default slick-dot character */
+.slick-dots li button:before {
+  content: "";
+}
+
+/* Hide prev/next buttons until hover */
 .slick-prev,
 .slick-next {
-  @apply z-20 border border-gray-600;
+  @apply opacity-0 transition-opacity duration-300 ease-in-out;
 }
 
-/* .slick-prev:before {
-  content: '<' !important;
-  font-weight: 900;
-} */
-/* .slick-arrow{
-  @apply !hidden
-} */
-
+/* Ensure prev button is visible */
 .slick-prev {
-  @apply !left-2 border border-red-800;
+  @apply !left-2 z-10 text-white;
 }
 
 .slick-next {
-  @apply !right-2 border border-red-800;
+  @apply !right-2 z-10 text-white;
 }
 
-/* .slick-list {
-  border-radius: 10px !important;
-} */
+/* Show both prev/next buttons on hover */
+.slick-slider:hover .slick-prev,
+.slick-slider:hover .slick-next {
+  @apply opacity-100;
+}

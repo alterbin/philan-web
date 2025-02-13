@@ -8,7 +8,6 @@ import { CreatGivenModal, GivenInterestModal } from "./sub-components/modals";
 import { Given } from "@/src/services/queries/givens/schemas";
 import Card from "./sub-components/card";
 import Typography from "@/src/components/ui/typography";
-import { FilterIcon } from "@/src/components/svgs/icons";
 
 export default function Givens() {
   const {
@@ -24,10 +23,6 @@ export default function Givens() {
 
   const handleClaim = (record: Given) => {
     setModals((prev) => ({ ...prev, enable: true, record }));
-  };
-
-  const handleOpen = () => {
-    setModals((prev) => ({ ...prev, show: true }));
   };
 
   useEffect(() => {
@@ -112,18 +107,7 @@ export default function Givens() {
             description="Kindly post item you want to give out"
           />
         )}
-        <div className="flex justify-end w-full mt-10">
-          <div className="w-[130px]">
-            <Button
-              className="!w-[125px]"
-              onClick={handleOpen}
-              type="button"
-              size="sm"
-            >
-              Create Given
-            </Button>
-          </div>
-        </div>
+  
       </div>
 
       <CreatGivenModal />

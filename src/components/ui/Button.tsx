@@ -39,7 +39,7 @@ export const Button = ({
       } ${
         variant === "outline"
           ? `bg-white outline outline-current ${
-              color === "black" ? "text-black" : "text-[#CC1717]"
+              color === "black" ? "text-black" : "text-green-90"
             }  outline-1`
           : variant === "gold"
           ? " !bg-[#DD9940] text-white"
