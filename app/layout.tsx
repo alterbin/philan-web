@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import Provider from "@/src/providers";
-import Footer from "@/src/components/ui/footer/footer";
+import Footer from "@/src/components/ui/footer";
 import Navbar from "@/src/components/ui/navbar";
 
 const poppins = Poppins({

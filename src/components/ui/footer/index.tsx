@@ -83,45 +83,6 @@ function FooterC() {
 
   return (
     <footer className="app_footer">
-      {/* <div className="app_footer__contact_us app_landing_page__px">
-        <div
-          className="app_footer__contact_us__con"
-          id={routes.home.hash.contactUs}
-        >
-          <Typography
-            className="app_mission__top__h3"
-            color="main-color"
-            fontWeight="md"
-            variant="h2"
-          >
-            Contact Us
-          </Typography>
-
-          <div className="app_footer__contact_us__con__info">
-            <div className="app_footer__contact_us__con__info__item">
-              <Message />
-
-              <a
-                href={`mailto:${config.CONTACT_US.email}`}
-                style={{ textDecoration: "none" }}
-              >
-                <Typography color="sub-text-color" variant="span">
-                  {config.CONTACT_US.email}
-                </Typography>
-              </a>
-            </div>
-
-            <div className="app_footer__contact_us__con__info__item">
-              <Call />
-
-              <Typography color="sub-text-color" variant="span">
-                +234 903 988 7841
-              </Typography>
-            </div>
-          </div>
-        </div>
-      </div> */}
-
       <div className="app_footer__content app_landing_page__px">
         <div className="app_footer__content__item">
           <Image
