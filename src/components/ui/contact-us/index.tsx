@@ -15,7 +15,7 @@ export const ContactUs = () => {
         >
           <div className="w-1/2">
             <Typography
-              className="text-4xl mb-3"
+              className="text-4xl mb-6"
               color="main-color"
               fontWeight="bd"
               variant="h1"
@@ -23,8 +23,7 @@ export const ContactUs = () => {
               Get In Touch
             </Typography>
             <Typography
-              className="text-xl "
-              color="main-color"
+              className="text-xl text-sec_text_color"
               fontWeight="rg"
               variant="p"
             >

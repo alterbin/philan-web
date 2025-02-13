@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -13,10 +13,9 @@ import "./styles.css";
 const { hash } = staticRoutes.home;
 
 const routes = [
-  { label: "About Us", href: `#${hash.aboutUs}` },
-  { label: "Initiatives", href: `/#${hash.initiatives}` },
-  { label: "Events", href: `/#${hash.events}` },
-  { label: "Contact", href: `#${hash.contactUs}` },
+  { label: "Home", href: `#${hash.home}` },
+  { label: "Features", href: `/#${hash.features}` },
+  { label: "Contact Us", href: `#${hash.contactUs}` },
 ];
 
 function Menu({ className = "" }) {
@@ -80,7 +79,7 @@ function Menu({ className = "" }) {
 
 function Routes({ mobile = false }) {
   return (
-    <ul className={`app__header__ul ${mobile ? "" : "flex lg:hidden"}`}>
+    <ul className={`app__header__ul ${mobile ? "" : "hidden lg:flex"}`}>
       {routes.map((item) => (
         <li className="app__header__ul__li" key={item.label}>
           <Link className="app__header__ul__li__a" href={item.href}>
@@ -119,14 +118,14 @@ function Main() {
       <Image
         style={{ visibility: "hidden" }}
         className="app__header__logo flex lg:hidden"
-        src="/media/logos/h-logo2.svg"
+        src="/media/logos/h-logo.svg"
         width={147}
         height={35}
         alt=""
         priority
       />
 
-      <Menu className="hamburger lg:hidden block" />
+      <Menu className="hamburger lg:hidden flex" />
     </div>
   );
 }

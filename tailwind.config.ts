@@ -24,6 +24,7 @@ export default {
         sec_color: "var(--sec-color)",
         text_color: "var(--text-color)",
         sub_text_color: "var(--sub-text-color)",
+        sec_text_color: "var(--sec-text-color)",
         green: {
           90: "var(--main-color)",
         },

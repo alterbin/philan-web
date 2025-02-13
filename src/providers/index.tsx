@@ -3,6 +3,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactNode } from "react";
 import { ModalsProvider } from "../contexts/modals";
+import { Provider as ContextProvider } from "../contexts/global";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,7 +22,9 @@ const queryClient = new QueryClient({
 export default function Provider({ children }: { children: ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
-      <ModalsProvider>{children}</ModalsProvider>
+      <ContextProvider>
+        <ModalsProvider>{children}</ModalsProvider>
+      </ContextProvider>
     </QueryClientProvider>
   );
 }
