@@ -72,7 +72,7 @@
 body {
   font-family: var(--font-poppins), sans-serif;
   color: rgb(var(--text-color));
-  background: #f3f9f9;
+  background: #F9F8F7;
   /* background: linear-gradient(
       to bottom,
       transparent,
@@ -127,6 +127,10 @@ body {
 
 .card p {
   @apply text-sm text-sub_text_color px-4 mb-1;
+}
+
+.center{
+  @apply flex justify-center items-center
 }
 
 .card_wrapper {

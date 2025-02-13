@@ -28,6 +28,10 @@ export default {
         green: {
           90: "var(--main-color)",
         },
+        black: {
+          60: "#263238"
+        },
+        gold: "#C78A3A",
       },
     },
   },

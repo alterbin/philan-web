@@ -1,12 +1,12 @@
 "use client";
 
-import { Button, ContactUs } from "@/src/components/ui";
+import { Button, ContactUs, Stats } from "@/src/components/ui";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
   const { push } = useRouter();
   return (
-    <div className=" bg-[#f3f9f9] flex flex-col gap-5 min-h-[80vh] justify-between pt-20">
+    <div className="flex flex-col gap-5 min-h-[80vh] justify-between pt-20">
       <div className="flex justify-center w-full mt-10">
         <Button
           className="!w-[120px]"
@@ -18,6 +18,9 @@ export default function Home() {
         </Button>
       </div>
 
+      <div className="app_landing_page__px">
+        <Stats />
+      </div>
       <div className="app_landing_page__px">
         <ContactUs />
       </div>
