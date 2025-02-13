@@ -1,8 +1,11 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Typography from "../../typography";
 import { Button } from "../../Button";
 import { useRouter } from "next/navigation";
 import { CheckCircle, Gift, Recycle } from "../../../svgs/icons";
+import { motion, useInView } from "framer-motion";
 
 interface IProps {
   icon: React.JSX.Element;
@@ -13,34 +16,24 @@ interface IProps {
 
 export const Stats = () => {
   const { push } = useRouter();
+  const sectionRef = React.useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   const Items: IProps[] = [
-    {
-      icon: <Gift />,
-      title: "TOTAL GIVENS",
-      total: 100,
-    },
-    {
-      icon: <CheckCircle />,
-      title: "FULFILLED GIVENS",
-      total: 80,
-    },
-    {
-      icon: <Recycle />,
-      title: "WASTE REPURPOSE",
-      total: 200,
-      unit: "kg",
-    },
+    { icon: <Gift />, title: "TOTAL GIVENS", total: 100 },
+    { icon: <CheckCircle />, title: "FULFILLED GIVENS", total: 80 },
+    { icon: <Recycle />, title: "WASTE REPURPOSE", total: 200, unit: "kg" },
   ];
+
   return (
-    <div className="bg-[#E6EBEA80] px-20 py-8 rounded-3xl">
+    <div ref={sectionRef} className="bg-[#E6EBEA80] px-20 py-8 rounded-3xl">
       <div className="flex flex-col gap-16">
         <Typography className="text-black-60 text-4xl" fontWeight="bd">
           Philan Stats
         </Typography>
 
         <div className="flex gap-3 justify-between items-center w-full px-4">
-          {Items?.map((item) => (
+          {Items.map((item) => (
             <div key={item.title} className="flex-col gap-3 center">
               <div className="bg-gold w-[72px] h-[72px] rounded-full center">
                 <div className="my-auto">{item.icon}</div>
@@ -50,7 +43,7 @@ export const Stats = () => {
                 className="text-black-60 text-5xl"
                 fontWeight="bd"
               >
-                {item.total}
+                <AnimatedNumber target={item.total} isInView={isInView} />
                 {item?.unit}
               </Typography>
               <Typography variant="p" fontWeight="md" className="text-xl">
@@ -73,4 +66,36 @@ export const Stats = () => {
       </div>
     </div>
   );
+};
+
+const AnimatedNumber = ({
+  target,
+  isInView,
+}: {
+  target: number;
+  isInView: boolean;
+}) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (isInView) {
+      let start = 0;
+      const duration = 800;
+      const interval = 5;
+      const step = target / (duration / interval);
+
+      const timer = setInterval(() => {
+        start += step;
+        setCount(Math.floor(start));
+        if (start >= target) {
+          setCount(target);
+          clearInterval(timer);
+        }
+      }, interval);
+
+      return () => clearInterval(timer);
+    }
+  }, [isInView, target]);
+
+  return <motion.span>{count}</motion.span>;
 };

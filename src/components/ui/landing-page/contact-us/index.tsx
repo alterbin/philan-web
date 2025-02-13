@@ -34,7 +34,7 @@ export const ContactUs = () => {
 
           <div className="app_footer__contact_us__con__info">
             <div className="app_footer__contact_us__con__info__item">
-              <div className="my-auto">
+              <div className="my-auto animate-bounce">
                 <Message />
               </div>
 
@@ -57,7 +57,7 @@ export const ContactUs = () => {
             </div>
 
             <div className="app_footer__contact_us__con__info__item">
-              <div className="my-auto">
+              <div className="my-auto animate-bounce2">
                 <Call />
               </div>
 

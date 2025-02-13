@@ -8,6 +8,33 @@ export default {
   ],
   theme: {
     extend: {
+      keyframes: {
+        shake: {
+          "0%, 100%": { transform: "translateX(0)" },
+          "25%": { transform: "translateX(-3px)" },
+          "50%": { transform: "translateX(3px)" },
+          "75%": { transform: "translateX(-3px)" },
+        },
+        pulseGray: {
+          "0%, 100%": { transform: "scale(1)", filter: "grayscale(100%)" },
+          "50%": { transform: "scale(0.98)", filter: "grayscale(0%)" },
+        },
+        bounce: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+        bounce2: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+          "20%": { transform: "translateY(-10px)" },
+        },
+      },
+      animation: {
+        shake: "shake 0.3s ease-in-out",
+        pulseGray: "pulseGray 2.5s infinite ease-in-out",
+        bounce: "bounce 1.5s infinite ease-in-out",
+        bounce2: "bounce2 2.5s infinite ease-in",
+      },
       fontFamily: {
         poppins: "var(--font-poppins), sans-serif",
       },
@@ -29,7 +56,7 @@ export default {
           90: "var(--main-color)",
         },
         black: {
-          60: "#263238"
+          60: "#263238",
         },
         gold: "#C78A3A",
       },
