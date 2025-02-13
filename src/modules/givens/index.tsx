@@ -1,14 +1,16 @@
 "use client";
 import { givenQueries } from "@/src/services/queries";
-import { Button, EmptyState } from "@/src/components/ui";
+import { Button, Dropdown, EmptyState, SearchInput } from "@/src/components/ui";
 import { useModals } from "@/src/contexts/modals";
 import { useInView } from "react-intersection-observer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { CreatGivenModal, GivenInterestModal } from "./sub-components/modals";
 import { Given } from "@/src/services/queries/givens/schemas";
 import Card from "./sub-components/card";
+import Typography from "@/src/components/ui/typography";
+import { FilterIcon } from "@/src/components/svgs/icons";
 
-export default function Givings() {
+export default function Givens() {
   const {
     data: givens,
     isLoading,
@@ -18,6 +20,7 @@ export default function Givings() {
   } = givenQueries.fetchInfiniteGivens();
   const { setModals } = useModals();
   const { ref, inView } = useInView();
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleClaim = (record: Given) => {
     setModals((prev) => ({ ...prev, enable: true, record }));
@@ -37,7 +40,44 @@ export default function Givings() {
   return (
     <div>
       <div>
-        <h3>All Givens</h3>
+        <div className="flex gap-10 justify-between">
+          <div>
+            <Typography
+              variant="h1"
+              fontWeight="bd"
+              color="main-color"
+              className="text-5xl leading-tight"
+            >
+              Available items
+            </Typography>
+            <Typography variant="p" color="main-color" className="text-xl">
+              List items that can be claimed
+            </Typography>
+          </div>
+
+          <div
+            className="flex justify-end gap-2 h-10"
+            style={{
+              maxHeight: "46px",
+            }}
+          >
+            <SearchInput
+              placeholder="Search givens..."
+              handleChange={(val) => setSearchTerm(val)}
+              value={searchTerm}
+            />
+
+            <Dropdown
+              btnClassName="bg-[#DD9940] h-[46px]"
+              value="Filter by"
+              data={[
+                { label: "A-Z" },
+                { label: "Date" },
+                { label: "Location" },
+              ]}
+            />
+          </div>
+        </div>
         <div className="card_wrapper mt-10">
           {isLoading ? (
             <p>Loading...</p>

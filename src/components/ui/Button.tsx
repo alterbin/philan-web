@@ -8,7 +8,7 @@ interface ButtonProps {
   type?: "submit" | "button" | "reset";
   size?: "lg" | "md" | "sm";
   icon?: React.ReactNode;
-  variant?: "filled" | "outline";
+  variant?: "filled" | "outline" | "gold";
   className?: string;
   color?: "black" | "red";
 }
@@ -30,7 +30,7 @@ export const Button = ({
       onClick={onClick}
       className={`${className} transition uppercase hover:opacity-80 ${
         size === "sm"
-          ? "px-5 py-[10px] text-[11px]"
+          ? "px-5 py-[10px] text-[11px] rounded-[10px]"
           : size === "md"
           ? "text-[12px]"
           : ""
@@ -41,9 +41,11 @@ export const Button = ({
           ? `bg-white outline outline-current ${
               color === "black" ? "text-black" : "text-[#CC1717]"
             }  outline-1`
+          : variant === "gold"
+          ? " !bg-[#DD9940] text-white"
           : "text-white"
       }
-      ${disabled && "bg-grey-10 cursor-not-allowed"}
+      ${disabled ? "bg-grey-10 cursor-not-allowed" : ""}
         `}
       type={type}
     >
