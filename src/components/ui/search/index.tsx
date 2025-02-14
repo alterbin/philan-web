@@ -1,3 +1,5 @@
+"use client"
+
 import { useDebounce } from "@/src/hooks";
 import React, {
   useState,

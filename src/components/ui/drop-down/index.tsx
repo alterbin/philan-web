@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useRef, useEffect } from "react";
 import { ArrowDown, ArrowUp } from "../../svgs/icons/arrows";
 import { FilterIcon } from "../../svgs/icons";
