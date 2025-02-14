@@ -7,5 +7,6 @@ export { Trash } from "./trash";
 export { SearchIcon } from "./search";
 export { FilterIcon } from "./filter";
 export { Location } from "./location";
+export { PlusCircle } from "./circle-plus";
 export * from "./stats"
 export * from "./gift"
