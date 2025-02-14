@@ -1,6 +1,6 @@
 "use client";
 import { givenQueries } from "@/src/services/queries";
-import { Button, Dropdown, EmptyState, SearchInput } from "@/src/components/ui";
+import { Dropdown, EmptyState, SearchInput } from "@/src/components/ui";
 import { useModals } from "@/src/contexts/modals";
 import { useInView } from "react-intersection-observer";
 import { useEffect, useState } from "react";

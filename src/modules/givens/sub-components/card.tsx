@@ -37,7 +37,7 @@ const Card: React.FC<CardProps> = ({
   return (
     <div className="rounded-[20px] max-w-[400px] overflow-hidden transition-transform transform hover:shadow-lg cursor-pointer p-3 bg-white shadow-lg">
       {/* Image Slider Section */}
-      <div className="relative min-h-48">
+      <div className="relative min-h-80">
         <Slider {...settings}>
           {images.map((image, index) => (
             <div key={index} className="relative max-h-[327px] rounded-lg">
@@ -57,7 +57,7 @@ const Card: React.FC<CardProps> = ({
       {/* Content Section */}
       <div className="p-3">
         <h3 className="text-lg mb-1 font-semibold text-green-90">{title}</h3>
-        <div className="flex gap-2 mb-1">
+        <div className="flex gap-2 mb-1 h-12">
           <span className="app_card_desc">Description:</span>
           <span className="app_card_desc_text">{description}</span>
         </div>
