@@ -11,7 +11,7 @@ export const CreatGivenModal = () => {
   };
 
   return (
-    <Modal title="Create Given" isOpen={modals.show} onClose={handleClose}>
+    <Modal title="Give Item" subTitle="To give an item, kindly fill the form below" isOpen={modals.show} onClose={handleClose}>
       <NewGivenForm />
     </Modal>
   );

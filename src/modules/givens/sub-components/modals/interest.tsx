@@ -11,7 +11,7 @@ export const GivenInterestModal = () => {
   };
 
   return (
-    <Modal title="Apply for this Item" isOpen={modals.enable} onClose={handleClose}>
+    <Modal title="Claim Item" subTitle="To claim any item, kindly fill the form below" isOpen={modals.enable} onClose={handleClose}>
       <ClaimGivingForm />
     </Modal>
   );
