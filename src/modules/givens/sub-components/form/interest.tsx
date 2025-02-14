@@ -58,11 +58,12 @@ export default function GivenInterestForm() {
           onChange={handleChange}
           onBlur={handleBlur}
           error={errorParser(errors, touched, "contact")}
+          required
         />
       </div>
       <div className="grid grid-cols-1 gap-2">
         <Autocomplete
-          label="Pickup Location"
+          label="Shipping  Location"
           name="shippingAddress"
           placeholder="Pickup Address"
           value={values.shippingAddress}
@@ -74,15 +75,16 @@ export default function GivenInterestForm() {
       <Textarea
         label="Note"
         name="note"
-        placeholder="Tell us why you need this so bad"
+        placeholder="Tell us why you will like to claim this item"
         value={values.note}
         onChange={handleChange}
         onBlur={handleBlur}
         error={errorParser(errors, touched, "note")}
+        required
       />
 
       <Checkbox
-        label="I have read and agree to terms and condition"
+        label="I have read and agreed to terms and condition"
         id="agreedTc"
         onChange={handleChange}
         checked={values.agreedTc}
@@ -90,6 +92,7 @@ export default function GivenInterestForm() {
 
       <Button
         type="submit"
+        className="font-semibold !rounded-2xl h-[73px]"
         disabled={!isValid || !dirty || !values?.agreedTc || isPending}
       >
         {isPending ? "Saving..." : "Apply Claim"}

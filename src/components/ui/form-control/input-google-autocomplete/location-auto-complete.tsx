@@ -80,6 +80,7 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
         name={name}
         value={value}
         placeholder={placeholder}
+        required
       />
       <ul
         {...getMenuProps()}

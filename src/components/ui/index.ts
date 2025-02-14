@@ -5,4 +5,7 @@ export { Modal } from "./modal";
 export { Checkbox } from "./checkbox";
 export { Spinner } from "./spinner";
 export { EmptyState } from "./empty-state";
+export { Stats } from "./landing-page/stats";
+export { SearchInput } from "./search";
+export { Dropdown } from "./drop-down";
 export * from "./navbar";

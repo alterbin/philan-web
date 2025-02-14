@@ -1,6 +1,12 @@
 "use client";
 
-import { Button, Checkbox, InputGoogleAutocomplete, Input } from "@/src/components/ui";
+import {
+  Button,
+  Checkbox,
+  InputGoogleAutocomplete,
+  Input,
+  Textarea,
+} from "@/src/components/ui";
 import { givenQueries } from "@/src/services/queries";
 import { useFormik } from "formik";
 import { z } from "zod";
@@ -10,7 +16,6 @@ import { createGivenSchema } from "@/src/services/queries/givens/schemas";
 import { useState } from "react";
 import ImageUploader from "../upload";
 import Autocomplete from "@/src/components/ui/form-control/input-google-autocomplete/location-auto-complete";
-
 
 type PostSchema = z.infer<typeof createGivenSchema>;
 
@@ -51,8 +56,8 @@ export default function NewGivenForm() {
   } = useFormik<InitialValues>(formikProps);
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
-      <div className="grid grid-cols-2 gap-2">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full">
+      <div className="grid grid-cols-1 gap-6">
         <Input
           label="Item Name"
           name="name"
@@ -61,19 +66,23 @@ export default function NewGivenForm() {
           onChange={handleChange}
           onBlur={handleBlur}
           error={errorParser(errors, touched, "name")}
+          required
         />
-        <Input
-          label="Contact Info"
-          name="contact"
-          placeholder="Please enter your email or phone number"
-          value={values.contact}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={errorParser(errors, touched, "contact")}
-        />
-      </div>
-      <div className="grid grid-cols-1 gap-2">
-        {/* <InputGoogleAutocomplete
+        <div className="grid grid-cols-1 gap-2">
+          <Textarea
+            label="Condition"
+            name="description"
+            placeholder="Describe the condition of the item"
+            required
+            value={values.description}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={errorParser(errors, touched, "description")}
+          />
+        </div>
+
+        <div className="grid grid-cols-1 gap-2">
+          {/* <InputGoogleAutocomplete
           label="Location Address (Nearby)"
           onBlur={handleBlur}
           name="location"
@@ -83,30 +92,35 @@ export default function NewGivenForm() {
             setFieldValue("location", place);
           }}
         /> */}
-        <Autocomplete
-          label="Pickup Location"
-          name="address"
-          placeholder="Pickup Address"
-          value={values.address}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={errorParser(errors, touched, "address")}
-        />
-      </div>
-      <div className="grid grid-cols-1 gap-2">
+          <Autocomplete
+            label="Pickup Location"
+            name="address"
+            placeholder="Pickup Address"
+            value={values.address}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={errorParser(errors, touched, "address")}
+          />
+        </div>
+
         <Input
-          label="Item Condition"
-          name="description"
-          placeholder="The condition/description of the item"
-          required
-          value={values.description}
+          label="Contact Info"
+          name="contact"
+          placeholder="Please enter your email or phone number"
+          value={values.contact}
           onChange={handleChange}
           onBlur={handleBlur}
-          error={errorParser(errors, touched, "description")}
+          error={errorParser(errors, touched, "contact")}
+          required
         />
       </div>
 
-      <ImageUploader photos={photos} setPhotos={setPhotos} />
+      <ImageUploader
+        photos={photos}
+        setPhotos={setPhotos}
+        label="Item Picture"
+        required
+      />
 
       <Checkbox
         label="I have read and agree to terms and condition"
@@ -117,9 +131,11 @@ export default function NewGivenForm() {
 
       <Button
         type="submit"
+        size="lg"
+        className="font-semibold !rounded-2xl h-[73px]"
         disabled={!isValid || !dirty || !values?.agreedTc || photos?.length < 1}
       >
-        {isPending ? "Saving..." : "Create Given"}
+        {isPending ? "Saving..." : "Publish Item"}
       </Button>
     </form>
   );

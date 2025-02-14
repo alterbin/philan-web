@@ -2,7 +2,8 @@ export const rootColors = {
   'main-color': '#06382E',
   'sec-color': '#DD9940',
   'text-color': '#333',
-  'sub-text-color': '#8B8787',
+  'sub-text-color': '#979797',
+  'sec-text-color': '#555555',
 };
 
 export type Color = ReturnType<() => typeof rootColors>

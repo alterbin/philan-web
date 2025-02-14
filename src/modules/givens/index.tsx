@@ -1,14 +1,15 @@
 "use client";
 import { givenQueries } from "@/src/services/queries";
-import { Button, EmptyState } from "@/src/components/ui";
+import { Dropdown, EmptyState, SearchInput } from "@/src/components/ui";
 import { useModals } from "@/src/contexts/modals";
 import { useInView } from "react-intersection-observer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { CreatGivenModal, GivenInterestModal } from "./sub-components/modals";
 import { Given } from "@/src/services/queries/givens/schemas";
 import Card from "./sub-components/card";
+import Typography from "@/src/components/ui/typography";
 
-export default function Givings() {
+export default function Givens() {
   const {
     data: givens,
     isLoading,
@@ -18,13 +19,10 @@ export default function Givings() {
   } = givenQueries.fetchInfiniteGivens();
   const { setModals } = useModals();
   const { ref, inView } = useInView();
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleClaim = (record: Given) => {
     setModals((prev) => ({ ...prev, enable: true, record }));
-  };
-
-  const handleOpen = () => {
-    setModals((prev) => ({ ...prev, show: true }));
   };
 
   useEffect(() => {
@@ -34,10 +32,53 @@ export default function Givings() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView, hasNextPage]);
 
+  const repeatedData = Array.from({ length: 24 }, (_, index) => {
+    const post = givens?.data?.[index % givens?.data?.length]; // Cycle through the existing data
+    return { ...post, id: `${post?.id}-${index}` }; // Ensure unique IDs
+  });
+
   return (
     <div>
       <div>
-        <h3>All Givens</h3>
+        <div className="flex gap-10 justify-between">
+          <div>
+            <Typography
+              variant="h1"
+              fontWeight="bd"
+              color="main-color"
+              className="text-5xl leading-tight"
+            >
+              Available items
+            </Typography>
+            <Typography variant="p" color="main-color" className="text-xl">
+              List items that can be claimed
+            </Typography>
+          </div>
+
+          <div
+            className="flex justify-end gap-2 h-10"
+            style={{
+              maxHeight: "46px",
+            }}
+          >
+            <SearchInput
+              placeholder="Search givens..."
+              handleChange={(val) => setSearchTerm(val)}
+              value={searchTerm}
+              className="h-[46px]"
+            />
+
+            <Dropdown
+              btnClassName="bg-[#DD9940] h-[46px]"
+              value="Filter by"
+              data={[
+                { label: "A-Z" },
+                { label: "Date" },
+                { label: "Location" },
+              ]}
+            />
+          </div>
+        </div>
         <div className="card_wrapper mt-10">
           {isLoading ? (
             <p>Loading...</p>
@@ -72,18 +113,7 @@ export default function Givings() {
             description="Kindly post item you want to give out"
           />
         )}
-        <div className="flex justify-end w-full mt-10">
-          <div className="w-[130px]">
-            <Button
-              className="!w-[125px]"
-              onClick={handleOpen}
-              type="button"
-              size="sm"
-            >
-              Create Given
-            </Button>
-          </div>
-        </div>
+  
       </div>
 
       <CreatGivenModal />

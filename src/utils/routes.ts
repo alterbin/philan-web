@@ -3,10 +3,9 @@ const routes = {
     path: "/",
 
     hash: {
-      aboutUs: "about-us",
+      home: "home",
       contactUs: "contact-us",
-      events: "events",
-      initiatives: "initiatives",
+      features: "features",
     },
   },
 

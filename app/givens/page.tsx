@@ -1,12 +1,16 @@
-import Givings from '@/src/modules/givens'
-import React from 'react'
+import Givens from "@/src/modules/givens";
+import { CreateGivenButton } from "@/src/modules/givens/sub-components/create-given-button";
+import React, { Suspense } from "react";
 
-const GivingsPage = () => {
+const GivensPage = () => {
   return (
-    <div className="items-center bg-[#f3f9f9] min-h-screen p-8 pb-20 gap-16 sm:p-20">
-          <Givings />
-        </div>
-  )
-}
+    <Suspense fallback={<>Loading...</>}>
+      <div className="items-center app_landing_page__px min-h-screen pb-20 pt-28 gap-16 ">
+        <Givens />
+        <CreateGivenButton />
+      </div>
+    </Suspense>
+  );
+};
 
-export default GivingsPage
+export default GivensPage;
