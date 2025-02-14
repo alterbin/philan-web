@@ -53,7 +53,7 @@ export const Stats = () => {
           ))}
         </div>
 
-        <div className="flex w-full items-center justify-center">
+        <div className="flex w-full items-center justify-center animate-bounce hover:animate-shake">
           <Button
             className="!max-w-[300px] w-full h-[70px] rounded-2xl font-semibold"
             onClick={() => push("/givens")}
