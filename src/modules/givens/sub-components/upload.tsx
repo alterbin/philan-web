@@ -5,9 +5,16 @@ import { PlusCircle, Trash } from "@/src/components/svgs/icons";
 interface IProps {
   photos: string[];
   setPhotos: React.Dispatch<React.SetStateAction<string[]>>;
+  label?: string;
+  required?: boolean;
 }
 
-export default function ImageUploader({ photos, setPhotos }: IProps) {
+export default function ImageUploader({
+  photos,
+  setPhotos,
+  required,
+  label,
+}: IProps) {
   const [uploadProgress, setUploadProgress] = useState<number>(0);
   const [uploadingImage, setUploadingImage] = useState<string | null>(null);
 
@@ -83,7 +90,11 @@ export default function ImageUploader({ photos, setPhotos }: IProps) {
   };
 
   return (
-    <div>
+    <div className="flex flex-col gap-1 ">
+      <label className="text-sec_text_color mb-2 text-base font-semibold">
+        {label}
+        {required && <span className="text-red-10 ml-1">*</span>}
+      </label>
       <div className="bg-[#FAFAFA] border border-[#E5E5E5] h-[144px] w-full border-dashed rounded-2xl flex px-4 items-center">
         <div className="flex items-center flex-wrap gap-3">
           {photos.map((photo, index) => (

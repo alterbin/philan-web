@@ -115,7 +115,12 @@ export default function NewGivenForm() {
         />
       </div>
 
-      <ImageUploader photos={photos} setPhotos={setPhotos} />
+      <ImageUploader
+        photos={photos}
+        setPhotos={setPhotos}
+        label="Item Picture"
+        required
+      />
 
       <Checkbox
         label="I have read and agree to terms and condition"
@@ -126,7 +131,8 @@ export default function NewGivenForm() {
 
       <Button
         type="submit"
-        className="font-semibold !rounded-2xl"
+        size="lg"
+        className="font-semibold !rounded-2xl h-[73px]"
         disabled={!isValid || !dirty || !values?.agreedTc || photos?.length < 1}
       >
         {isPending ? "Saving..." : "Publish Item"}

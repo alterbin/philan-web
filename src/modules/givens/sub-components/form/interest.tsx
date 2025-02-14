@@ -92,7 +92,7 @@ export default function GivenInterestForm() {
 
       <Button
         type="submit"
-        className="font-semibold !rounded-2xl"
+        className="font-semibold !rounded-2xl h-[73px]"
         disabled={!isValid || !dirty || !values?.agreedTc || isPending}
       >
         {isPending ? "Saving..." : "Apply Claim"}
