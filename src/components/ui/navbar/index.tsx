@@ -142,11 +142,6 @@ function MobileMenu() {
       <div className="flex flex-col items-center">
         <Routes mobile />
 
-        <a className="app_hero_section__content__txt__action" href="/">
-          <Arrow />
-
-          <Typography variant="span">Learn more</Typography>
-        </a>
       </div>
 
       <div className="app__header__mobile_menu_content__footer">

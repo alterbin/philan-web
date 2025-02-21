@@ -31,14 +31,14 @@ export const HowItWorks = () => {
     },
   ];
   return (
-    <div className="lg:my-6 my-28" id={routes.home.hash.features}>
-      <div className="center w-full my-5">
-        <Typography variant="h1" fontWeight="bd" className="text-4xl">
+    <div className="" id={routes.home.hash.features}>
+      <div className="center w-full mb-5 tablet:mt-5 mt-5">
+        <Typography variant="h1" fontWeight="bd" className="md:text-4xl text-3xl">
           How It works
         </Typography>
       </div>
 
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 justify-between items-center w-full">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 place-items-center items-center w-full">
         {Items?.map((item) => (
           <div
             key={item.title}

@@ -26,16 +26,12 @@ const footerItems = [
     name: "How it works",
     hash: "#",
   },
-  {
-    name: "Claim an Items",
-    hash: "#",
-  },
 ];
 
 function FooterBtm() {
   return (
     <>
-      <Typography variant="span">
+      <Typography variant="span" className="tablet:text-white text-[#08846B]">
         Copyright © {new Date().getFullYear()} Alterbin Technologies
       </Typography>
     </>
@@ -106,7 +102,7 @@ function FooterC() {
         ))}
       </div>
 
-      <div className="flex flex-col gap-5 app_landing_page__px">
+      <div className="flex flex-col gap-5 app_landing_page__footer__px">
         <div className="">
           <Socials />
         </div>

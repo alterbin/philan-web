@@ -23,7 +23,7 @@
 .app_footer__contact_us__con {
   border-radius: 20px;
   background: #fff;
-  box-shadow: 0px -2px 12px 1px rgba(19, 15, 38, 0.06);
+  /* box-shadow: 0px -2px 12px 1px rgba(19, 15, 38, 0.06); */
   min-height: 341px;
   padding: 50px 77px;
   display: flex;
@@ -54,7 +54,7 @@
 
 @media (max-width: 992px) {
   .app_footer__contact_us__con__info {
-    gap: 16px;
+    gap: 40px;
   }
 }
 

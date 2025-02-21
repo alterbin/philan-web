@@ -72,6 +72,10 @@ export default {
           10: "#F2515C"
         },
       },
+      screens: {
+        tablet: "992px",
+        '4klarge': '4000px'
+      },
     },
   },
   plugins: [],

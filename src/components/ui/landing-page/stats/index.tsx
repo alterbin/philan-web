@@ -26,13 +26,13 @@ export const Stats = () => {
   ];
 
   return (
-    <div ref={sectionRef} className="bg-[#E6EBEA80] px-20 py-8 rounded-3xl">
+    <div ref={sectionRef} className="bg-[#E6EBEA80] px-20 py-8 mt-8 rounded-3xl">
       <div className="flex flex-col gap-16">
-        <Typography className="text-black-60 text-4xl" fontWeight="bd">
+        <Typography className="text-black-60 text-4xl text-center md:text-start" fontWeight="bd">
           Philan Stats
         </Typography>
 
-        <div className="flex gap-3 justify-between items-center w-full px-4">
+        <div className="flex md:gap-3 gap-24 md:flex-row flex-col justify-between items-center w-full px-4">
           {Items.map((item) => (
             <div key={item.title} className="flex-col gap-3 center">
               <div className="bg-gold w-[72px] h-[72px] rounded-full center">
@@ -46,7 +46,7 @@ export const Stats = () => {
                 <AnimatedNumber target={item.total} isInView={isInView} />
                 {item?.unit}
               </Typography>
-              <Typography variant="p" fontWeight="md" className="text-xl">
+              <Typography variant="p" fontWeight="md" className="text-xl text-center">
                 {item.title}
               </Typography>
             </div>
@@ -55,7 +55,7 @@ export const Stats = () => {
 
         <div className="flex w-full items-center justify-center animate-bounce hover:animate-shake">
           <Button
-            className="!max-w-[300px] w-full h-[70px] rounded-2xl font-semibold"
+            className="md:!max-w-[300px] !max-w-[260px] w-full h-[65px] !rounded-2xl font-semibold md:text-[18px] text-[15px]"
             onClick={() => push("/givens")}
             type="button"
             size="sm"

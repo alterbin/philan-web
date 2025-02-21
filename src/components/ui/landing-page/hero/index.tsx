@@ -17,47 +17,47 @@ export const Hero = () => {
   const imageStyles =
     "w-full h-full object-cover rounded-[20px] transition-all duration-500 animate-pulseGray hover:grayscale-0 hover:animate-shake hover:scale-105";
   return (
-    <div className="bg-[#F6F8FA] app_landing_page__px max-h-[90vh] h-full mt-2 py-20" id={routes.home.hash.home}>
-      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[555px] gap-5 ">
+    <div className="bg-[#F6F8FA] app_landing_page__px lg:max-h-[90vh] max-h-auto] h-full mt-2 pt-[70px] md:pb-20 pb-10" id={routes.home.hash.home}>
+      <div className="grid grid-cols-1 tablet:grid-cols-2 min-h-[555px] tablet:gap-5 gap-10 ">
         <div className="w-[90%] my-auto flex flex-col gap-6">
           <Typography
             variant="h1"
             fontWeight="bd"
             color="main-color"
-            className="text-5xl leading-tight"
+            className="md:text-5xl text-4xl leading-tight"
           >
-            Breathe New Life into Old Items.
+            Breathe <span className="text-sec_color">New Life</span> into Old Items.
           </Typography>
-          <Typography variant="p" color="main-color" className="text-xl">
+          <Typography variant="p" color="main-color" className="md:text-xl text-[15px]">
             Join Philan to give old items a new story.
           </Typography>
           <div className="flex w-full animate-bounce hover:animate-shake">
             <Button
-              className="!max-w-[300px] w-full h-[65px] rounded-2xl font-semibold"
+              className="md:!max-w-[300px] !max-w-[260px] w-full h-[65px] !rounded-2xl font-semibold md:text-[18px] text-[15px]"
               onClick={() => push("/givens")}
               type="button"
-              size="sm"
+              // size="sm"
             >
               Get Started
             </Button>
           </div>
         </div>
 
-        <div className="flex gap-3">
-          <div className="h-full flex flex-col gap-3">
-            <div className="max-w-[346px] h-2/3 center w-full">
+        <div className="flex gap-3 !w-full tablet:justify-start justify-center">
+          <div className=" tablet:max-w-[346px] w-full h-full flex flex-col gap-3">
+            <div className=" h-2/3 center w-full">
               <Image src={Junks} alt="" priority className={imageStyles} />
             </div>
-            <div className="max-w-[346px]  center w-full h-1/3">
+            <div className=" center w-full h-1/3">
               <Image src={Pillow} alt="" priority className={imageStyles} />
             </div>
           </div>
 
-          <div className="h-full flex flex-col gap-3">
-            <div className="max-w-[346px] h-1/2 center w-full">
+          <div className="tablet:max-w-[346px]  h-full flex flex-col gap-3">
+            <div className=" h-1/2 center w-full">
               <Image src={Clothes} alt="" priority className={imageStyles} />
             </div>
-            <div className="max-w-[346px] center w-full h-1/2">
+            <div className="center w-full h-1/2">
               <Image src={Bible} alt="" priority className={imageStyles} />
             </div>
           </div>
