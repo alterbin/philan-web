@@ -25,12 +25,12 @@ export const Textarea: React.FC<InputProps> = (props: InputProps) => {
           maxHeight: "118px",
         }}
         maxLength={150}
-        className={`w-full bottom-1 focus:outline-none px-4 py-5 border !border-[#DDDDDD] !focus:border-sec_text_color focus-within:border-red-200 outline-none rounded-lg bg-white text-sec_text_color font-semibold ${
+        className={`w-full bottom-1 focus:outline-none px-4 py-5 border !border-[#DDDDDD] !focus:border-sec_text_color focus-within:border-red-200 outline-none rounded-lg placeholder:md:text-base placeholder:text-sm bg-white text-sec_text_color font-semibold ${
           error ? " border-red-200" : ""
         }`}
         {...restProps}
       />
-      {!!error && <p className="text-red-600">{error}</p>}
+      {!!error && <p className="text-red-600 md:text-base text-sm">{error}</p>}
     </div>
   );
 };

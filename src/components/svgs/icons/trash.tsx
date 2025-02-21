@@ -37,9 +37,9 @@ export function X(props: SVGProps<SVGSVGElement>) {
       <path
         d="M1.50537 8.49531L5.0007 4.99997L8.49604 8.49531M8.49604 1.50464L5.00004 4.99997L1.50537 1.50464"
         stroke="#F2515C"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

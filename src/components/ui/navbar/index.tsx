@@ -32,10 +32,10 @@ function Menu({ className = "" }) {
     return (
       <svg
         onClick={toggleMenu}
-        className={`cursor-pointer ${className}`}
+        className={`cursor-pointer w-7 h-7 ${className}`}
         xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
+        // width="24"
+        // height="24"
         viewBox="0 0 44 44"
         fill="none"
       >
@@ -54,7 +54,7 @@ function Menu({ className = "" }) {
   return (
     <svg
       onClick={toggleMenu}
-      className={`cursor-pointer ${className}`}
+      className={`cursor-pointer w-7 h-7 ${className}`}
       width="24"
       height="24"
       viewBox="0 0 24 24"

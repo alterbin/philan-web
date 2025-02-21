@@ -56,7 +56,7 @@ const Card: React.FC<CardProps> = ({
 
       {/* Content Section */}
       <div className="p-3">
-        <h3 className="text-lg mb-1 font-semibold text-green-90">{title}</h3>
+        <h3 className="text-lg mb-1 font-semibold text-green-90 capitalize">{title}</h3>
         <div className="flex gap-2 mb-1 h-12">
           <span className="app_card_desc">Description:</span>
           <span className="app_card_desc_text">{description}</span>

@@ -8,18 +8,28 @@ import { CreatGivenModal, GivenInterestModal } from "./sub-components/modals";
 import { Given } from "@/src/services/queries/givens/schemas";
 import Card from "./sub-components/card";
 import Typography from "@/src/components/ui/typography";
+import { useDebounce } from "@/src/hooks";
 
 export default function Givens() {
+
+  const { setModals } = useModals();
+  const { ref, inView } = useInView();
+  const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearch = useDebounce(searchTerm, 1000);
+
+
   const {
     data: givens,
     isLoading,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = givenQueries.fetchInfiniteGivens();
-  const { setModals } = useModals();
-  const { ref, inView } = useInView();
-  const [searchTerm, setSearchTerm] = useState("");
+  } = givenQueries.fetchInfiniteGivens({
+    page: 1,
+    order: "desc",
+    take: 10,
+    search: debouncedSearch
+  });
 
   const handleClaim = (record: Given) => {
     setModals((prev) => ({ ...prev, enable: true, record }));

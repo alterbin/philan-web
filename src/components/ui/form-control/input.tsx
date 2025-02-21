@@ -35,13 +35,13 @@ export const Input: React.FC<InputProps> = (props: InputProps) => {
       </label>
       <input
         type={type}
-        className={`w-full px-4 py-5 border border-[#DDDDDD] focus:border-sec_text_color outline-none focus:outline-none rounded-lg bg-white text-sec_text_color font-semibold ${
+        className={`w-full px-4 py-5 border border-[#DDDDDD] focus:border-sec_text_color outline-none focus:outline-none rounded-lg bg-white text-sec_text_color font-semibold placeholder:md:text-base placeholder:text-sm ${
           error ? " border-red-200" : ""
         }`}
         onChange={onChange}
         {...restProps}
       />
-      {!!error && <Typography variant="p" className="text-red-600">{error}</Typography>}
+      {!!error && <Typography variant="p" className="text-red-600 md:text-base text-sm">{error}</Typography>}
     </div>
   );
 };
