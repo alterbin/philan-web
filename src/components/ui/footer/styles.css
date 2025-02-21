@@ -44,6 +44,28 @@
     margin-bottom: 20px;
   }
 }
+.app_footer__content2 {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 82px;
+  justify-content: space-between;
+  margin-right: 300px;
+}
+
+@media (max-width: 1200px) {
+  .app_footer__content2 {
+    gap: 60px;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 992px) {
+  .app_footer__content2 {
+    flex-direction: column;
+    gap: 42px;
+    margin-bottom: 20px;
+  }
+}
 
 .app_footer__content__item {
   display: flex;
@@ -114,7 +136,7 @@
   .app_footer__btm {
     flex-direction: column;
     gap: 8px;
-    padding: 16px 0;
+    padding: 16px 80px;
     border-top: none;
   }
 
@@ -156,12 +178,20 @@
       padding-left: 32px;
       padding-right: 32px;
     }
+
+    .app_footer__btm {
+      padding: 16px 32px;
+    }
   }
   
   @media (max-width: 480px) {
     .app_landing_page__social__px {
       padding-left: 16px;
       padding-right: 16px;
+    }
+
+    .app_footer__btm {
+      padding: 16px 16px;
     }
   }
 }

@@ -23,6 +23,13 @@
   cursor: pointer;
 }
 
+@media (max-width: 768px){
+  .custom-checkbox{
+    width: 16px;
+  height: 16px;
+  }
+}
+
 .custom-checkbox:checked {
   background-color: var(--main-color);
   border-color: var(--main-color);

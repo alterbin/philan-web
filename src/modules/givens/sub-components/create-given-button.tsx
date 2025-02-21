@@ -12,14 +12,15 @@ export const CreateGivenButton = () => {
     <>
       <button
         onClick={handleOpen}
-        className="fixed bottom-40 right-4 bg-green-90 hover:opacity-75 rounded-full p-2 shadow-2xl w-[80px] h-[80px] flex items-center justify-center transition-all ease-in-out duration-150 z-50"
+        className="fixed bottom-40 right-4 bg-green-90 hover:opacity-75 rounded-full p-2 shadow-2xl md:w-[80px] md:h-[80px] h-[50px] w-[50px] flex items-center justify-center transition-all ease-in-out duration-150 z-40"
       >
-        <span className="animate-bounce">
+        <span className="md:animate-bounce">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="50"
-            height="50"
+            // width="50"
+            // height="50"
             viewBox="0 0 50 50"
+            className="w-8 h-8 md:w-[50px] md:h-[50px]"
             fill="none"
           >
             <g clipPath="url(#clip0_490_2423)">

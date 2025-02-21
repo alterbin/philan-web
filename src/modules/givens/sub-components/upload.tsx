@@ -1,6 +1,6 @@
 import { useState, ChangeEvent } from "react";
 import toast from "react-hot-toast";
-import { PlusCircle, Trash } from "@/src/components/svgs/icons";
+import { PlusCircle, X } from "@/src/components/svgs/icons";
 
 interface IProps {
   photos: string[];
@@ -104,7 +104,7 @@ export default function ImageUploader({
                 type="button"
                 className="absolute top-[5px] left-[5px] h-[30px] w-[30px] cursor-pointer text-white border-none flex items-center justify-center bg-[#ffffff90] rounded-[50%] z-20"
               >
-                <Trash />
+                <X />
               </button>
               <img
                 src={photo}

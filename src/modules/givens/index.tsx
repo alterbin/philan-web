@@ -40,17 +40,17 @@ export default function Givens() {
   return (
     <div>
       <div>
-        <div className="flex gap-10 justify-between">
+        <div className="flex tablet:flex-row flex-col tablet:gap-10 gap-5 justify-between">
           <div>
             <Typography
               variant="h1"
               fontWeight="bd"
               color="main-color"
-              className="text-5xl leading-tight"
+              className="tablet:text-5xl text-3xl leading-tight"
             >
               Available items
             </Typography>
-            <Typography variant="p" color="main-color" className="text-xl">
+            <Typography variant="p" color="main-color" className="tablet:text-xl text-[15px]">
               List items that can be claimed
             </Typography>
           </div>
@@ -69,7 +69,7 @@ export default function Givens() {
             />
 
             <Dropdown
-              btnClassName="bg-[#DD9940] h-[46px]"
+              btnClassName="bg-[#DD9940] h-[46px] md:!w-[118px] !w-[45px] whitespace-nowrap "
               value="Filter by"
               data={[
                 { label: "A-Z" },

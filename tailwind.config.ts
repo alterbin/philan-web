@@ -73,7 +73,9 @@ export default {
         },
       },
       screens: {
+        xs: "350px",
         tablet: "992px",
+        phone: "440px",
         '4klarge': '4000px'
       },
     },

@@ -93,13 +93,15 @@ function FooterC() {
           <Typography variant="span">Give Old items a new story</Typography>
         </div>
 
-        {footerItems?.map((item) => (
-          <div key={item.name} className="app_footer__content__item">
-            <Typography fontWeight="md" variant="h5">
-              {item.name}
-            </Typography>
-          </div>
-        ))}
+        <div className="app_footer__content2">
+          {footerItems?.map((item) => (
+            <div key={item.name} className="app_footer__content__item">
+              <Typography fontWeight="md" variant="h5">
+                {item.name}
+              </Typography>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="flex flex-col gap-5 app_landing_page__footer__px">
