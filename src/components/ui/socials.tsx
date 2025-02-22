@@ -26,7 +26,7 @@ export default function Socials({ dark = false }) {
   const props = dark ? { fill: color, stroke: color } : {};
 
   return (
-    <div className="app_footer__btm__socials">
+    <div className="app_footer__btm__socials app_landing_page__social__px">
       {socials.map((item) => (
         <a
           href={item.href}

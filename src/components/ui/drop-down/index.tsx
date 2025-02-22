@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState, useRef, useEffect } from "react";
 import { ArrowDown, ArrowUp } from "../../svgs/icons/arrows";
@@ -78,7 +78,7 @@ export const Dropdown: React.FC<SelectDropdownProps> = ({
               <div className="my-auto">
                 <FilterIcon />
               </div>
-              {value}
+              <div className="md:flex hidden">{value}</div>
             </div>
           ) : (
             placeholder

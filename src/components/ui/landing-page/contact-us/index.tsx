@@ -13,9 +13,9 @@ export const ContactUs = () => {
           className="app_footer__contact_us__con"
           id={routes.home.hash.contactUs}
         >
-          <div className="w-1/2">
+          <div className="tablet:w-1/2 w-full">
             <Typography
-              className="text-4xl mb-6"
+              className="md:text-4xl text-3xl mb-6 text-center tablet:text-start"
               color="main-color"
               fontWeight="bd"
               variant="h1"
@@ -23,7 +23,7 @@ export const ContactUs = () => {
               Get In Touch
             </Typography>
             <Typography
-              className="text-xl text-sec_text_color"
+              className="md:text-xl text-[15px] text-sec_text_color text-center tablet:text-start"
               fontWeight="rg"
               variant="p"
             >

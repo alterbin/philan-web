@@ -25,7 +25,7 @@ export const Checkbox: React.FC<IToggle> = (props) => {
           disabled={disabled}
         />
       </div>
-      <label htmlFor={id} className="font-medium mb-5 text-base cursor-pointer">{label}</label>
+      <label htmlFor={id} className="font-medium md:mb-5 text-[10px] md:text-base cursor-pointer">{label}</label>
     </div>
   );
 };

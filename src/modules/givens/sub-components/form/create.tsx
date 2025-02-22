@@ -11,7 +11,7 @@ import { givenQueries } from "@/src/services/queries";
 import { useFormik } from "formik";
 import { z } from "zod";
 import { zodToFormikAdapter } from "@/src/utils/zodToFormikAdapter";
-import { errorParser } from "@/src/utils";
+import { errorParser, getLocalStorage, saveLocalStorage } from "@/src/utils";
 import { createGivenSchema } from "@/src/services/queries/givens/schemas";
 import { useState } from "react";
 import ImageUploader from "../upload";
@@ -19,24 +19,28 @@ import Autocomplete from "@/src/components/ui/form-control/input-google-autocomp
 
 type PostSchema = z.infer<typeof createGivenSchema>;
 
-type InitialValues = ReturnType<() => typeof initialValues>;
-
-const initialValues = {
-  name: "",
-  address: "",
-  description: "",
-  contact: "",
-  agreedTc: false,
-};
-
 export default function NewGivenForm() {
   const { mutate, isPending } = givenQueries.Create();
   const [photos, setPhotos] = useState<string[]>([]);
+
+  const contact = getLocalStorage('contact_info');
+
+  const initialValues = {
+    name: "",
+    address: "",
+    description: "",
+    contact: String(contact) || "",
+    agreedTc: false,
+  };
+
+  type InitialValues = ReturnType<() => typeof initialValues>;
+
 
   const formikProps = {
     initialValues,
     validate: zodToFormikAdapter(createGivenSchema),
     onSubmit: ({ agreedTc, ...values }: InitialValues) => {
+      saveLocalStorage('contact_info', values?.contact)
       mutate({
         ...values,
         photos,
@@ -129,14 +133,18 @@ export default function NewGivenForm() {
         checked={values.agreedTc}
       />
 
-      <Button
-        type="submit"
-        size="lg"
-        className="font-semibold !rounded-2xl h-[73px]"
-        disabled={!isValid || !dirty || !values?.agreedTc || photos?.length < 1}
-      >
-        {isPending ? "Saving..." : "Publish Item"}
-      </Button>
+      <div className="w-full flex justify-center">
+        <Button
+          type="submit"
+          size="lg"
+          className="font-semibold !rounded-2xl phone:h-[73px] h-[60px] phone:w-full w-[200px] !capitalize"
+          disabled={
+            !isValid || !dirty || !values?.agreedTc || photos?.length < 1
+          }
+        >
+          {isPending ? "Saving..." : "Publish Item"}
+        </Button>
+      </div>
     </form>
   );
 }
