@@ -35,7 +35,7 @@ const Card: React.FC<CardProps> = ({
   };
 
   return (
-    <div className="rounded-[20px] max-w-[400px] overflow-hidden transition-transform transform hover:shadow-lg cursor-pointer p-3 bg-white shadow-lg">
+    <div className="rounded-[20px]  max-w-auto overflow-hidden transition-transform transform hover:shadow-lg cursor-pointer p-3 bg-white shadow-lg">
       {/* Image Slider Section */}
       <div className="relative min-h-80">
         <Slider {...settings}>
@@ -56,7 +56,7 @@ const Card: React.FC<CardProps> = ({
 
       {/* Content Section */}
       <div className="p-3">
-        <h3 className="text-lg mb-1 font-semibold text-green-90">{title}</h3>
+        <h3 className="text-lg mb-1 font-semibold text-green-90 capitalize">{title}</h3>
         <div className="flex gap-2 mb-1 h-12">
           <span className="app_card_desc">Description:</span>
           <span className="app_card_desc_text">{description}</span>
@@ -72,17 +72,17 @@ const Card: React.FC<CardProps> = ({
           </div>
 
           <Button
-            className="!w-[180px] font-medium app_claim_btn flex items-center gap-2"
+            className="sm:!w-[180px] !w-[130px] sm:h-auto !h-[45px] font-medium app_claim_btn flex items-center gap-2 px-1"
             onClick={onClick}
             type="button"
             size="sm"
             variant="outline"
             color="red"
           >
-            <div className="app_claim_btn_icon animate-rotate45">
+            <div className="app_claim_btn_icon animate-rotate45 xs:flex hidden">
               <ReceiveGift />
             </div>
-            <span className="app_claim_btn_text">Claim Item</span>
+            <span className="app_claim_btn_text sm:!text-base !text-sm">Claim Item</span>
           </Button>
         </div>
       </div>

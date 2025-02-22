@@ -1,6 +1,6 @@
 import { useState, ChangeEvent } from "react";
 import toast from "react-hot-toast";
-import { PlusCircle, Trash } from "@/src/components/svgs/icons";
+import { PlusCircle, X } from "@/src/components/svgs/icons";
 
 interface IProps {
   photos: string[];
@@ -95,16 +95,16 @@ export default function ImageUploader({
         {label}
         {required && <span className="text-red-10 ml-1">*</span>}
       </label>
-      <div className="bg-[#FAFAFA] border border-[#E5E5E5] h-[144px] w-full border-dashed rounded-2xl flex px-4 items-center">
+      <div className="bg-[#FAFAFA] border border-[#E5E5E5] min-h-[144px] w-full border-dashed rounded-2xl flex px-4 py-4 md:py-0 items-center">
         <div className="flex items-center flex-wrap gap-3">
           {photos.map((photo, index) => (
             <div key={index} className="relative w-24 h-20">
               <button
                 onClick={() => handleDelete(index)}
                 type="button"
-                className="absolute top-[5px] left-[5px] h-[30px] w-[30px] cursor-pointer text-white border-none flex items-center justify-center bg-[#ffffff90] rounded-[50%] z-20"
+                className="absolute top-[5px] left-[5px] md:h-[30px] w-4 h-4 md:w-[30px] cursor-pointer text-white border-none flex items-center justify-center bg-[#ffffff] md:rounded-lg rounded-md z-20"
               >
-                <Trash />
+                <X />
               </button>
               <img
                 src={photo}
@@ -132,14 +132,14 @@ export default function ImageUploader({
               </div>
             </div>
           )}
-        </div>
-
         <button
           onClick={handleFileSelect}
           className="border border-[#E5E5E5] w-24 h-20 rounded-lg flex justify-center items-center border-dashed ml-3"
         >
           <PlusCircle />
         </button>
+        </div>
+
       </div>
     </div>
   );

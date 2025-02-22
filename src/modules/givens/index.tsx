@@ -8,18 +8,28 @@ import { CreatGivenModal, GivenInterestModal } from "./sub-components/modals";
 import { Given } from "@/src/services/queries/givens/schemas";
 import Card from "./sub-components/card";
 import Typography from "@/src/components/ui/typography";
+import { useDebounce } from "@/src/hooks";
 
 export default function Givens() {
+
+  const { setModals } = useModals();
+  const { ref, inView } = useInView();
+  const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearch = useDebounce(searchTerm, 1000);
+
+
   const {
     data: givens,
     isLoading,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = givenQueries.fetchInfiniteGivens();
-  const { setModals } = useModals();
-  const { ref, inView } = useInView();
-  const [searchTerm, setSearchTerm] = useState("");
+  } = givenQueries.fetchInfiniteGivens({
+    page: 1,
+    order: "desc",
+    take: 10,
+    search: debouncedSearch
+  });
 
   const handleClaim = (record: Given) => {
     setModals((prev) => ({ ...prev, enable: true, record }));
@@ -40,17 +50,17 @@ export default function Givens() {
   return (
     <div>
       <div>
-        <div className="flex gap-10 justify-between">
+        <div className="flex tablet:flex-row flex-col tablet:gap-10 gap-5 justify-between">
           <div>
             <Typography
               variant="h1"
               fontWeight="bd"
               color="main-color"
-              className="text-5xl leading-tight"
+              className="tablet:text-5xl text-3xl leading-tight"
             >
               Available items
             </Typography>
-            <Typography variant="p" color="main-color" className="text-xl">
+            <Typography variant="p" color="main-color" className="tablet:text-xl text-[15px]">
               List items that can be claimed
             </Typography>
           </div>
@@ -69,7 +79,7 @@ export default function Givens() {
             />
 
             <Dropdown
-              btnClassName="bg-[#DD9940] h-[46px]"
+              btnClassName="bg-[#DD9940] h-[46px] md:!w-[118px] !w-[45px] whitespace-nowrap "
               value="Filter by"
               data={[
                 { label: "A-Z" },

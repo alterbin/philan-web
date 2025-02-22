@@ -31,7 +31,7 @@ export const Modal: React.FC<ModalProps> = ({
     <Transition show={isOpen} as={Fragment}>
       <Dialog
         as="div"
-        className="relative z-20"
+        className="relative z-50"
         initialFocus={cancelButtonRef}
         onClose={onClose}
       >
@@ -59,7 +59,7 @@ export const Modal: React.FC<ModalProps> = ({
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
               <DialogPanel className="relative w-full transform overflow-hidden rounded-[20px] bg-white p-5 text-left transition-all sm:my-8 sm:w-full md:max-w-2xl max-h-screen">
-                <div className="flex flex-col p-6">
+                <div className="flex flex-col md:p-6 p-2">
                   <div
                     className={`relative flex flex-col items-center text-center`}
                   >
@@ -69,8 +69,9 @@ export const Modal: React.FC<ModalProps> = ({
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="34"
-                        height="34"
+                        // width="34"
+                        // height="34"
+                        className="md:w-[34px] md:h-[34px] w-4 h-4"
                         viewBox="0 0 34 34"
                         fill="none"
                       >
@@ -94,7 +95,7 @@ export const Modal: React.FC<ModalProps> = ({
                       </Typography>
                     </div>
                   </div>
-                  <div className="w-full text-text_color overflow-y-auto max-h-[60vh] px-4 md:px-6 pb-6">
+                  <div className="w-full text-text_color overflow-y-auto max-h-[60vh] px-0 md:px-6 pb-6">
                     {children || message}
                   </div>
                 </div>

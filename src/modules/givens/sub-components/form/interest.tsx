@@ -90,13 +90,15 @@ export default function GivenInterestForm() {
         checked={values.agreedTc}
       />
 
-      <Button
-        type="submit"
-        className="font-semibold !rounded-2xl h-[73px]"
-        disabled={!isValid || !dirty || !values?.agreedTc || isPending}
-      >
-        {isPending ? "Saving..." : "Apply Claim"}
-      </Button>
+      <div className="w-full flex justify-center">
+        <Button
+          type="submit"
+          className="font-semibold !rounded-2xl phone:h-[73px] h-[60px] phone:w-full w-[200px] !capitalize"
+          disabled={!isValid || !dirty || !values?.agreedTc || isPending}
+        >
+          {isPending ? "Saving..." : "Apply Claim"}
+        </Button>
+      </div>
     </form>
   );
 }

@@ -119,8 +119,15 @@ body {
 
 .card_wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  row-gap: 30px;
+  column-gap: 20px;
+}
+
+@media (max-width: 390px){
+  .card_wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
 }
 
 .app_card__location {

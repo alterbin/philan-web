@@ -27,7 +27,7 @@ export async function GET(request: Request) {
       where,
       skip,
       take,
-      orderBy: { name: order },
+      orderBy: { createdAt: order },
     }),
   ]);
   return NextResponse.json({

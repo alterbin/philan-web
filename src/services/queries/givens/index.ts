@@ -51,7 +51,7 @@ const fetchGivens = (
 const fetchInfiniteGivens = (
   options: ReadRequest = {
     page: 1,
-    order: "ASC",
+    order: "desc",
     take: 10,
     search: "",
   }
@@ -60,7 +60,7 @@ const fetchInfiniteGivens = (
   const url = `${BASE_URL}?page=${page}&order=${order}&take=${take}&search=${search}`;
 
   const { data, ...response } = useInfiniteQuery({
-    queryKey: [queryKey.read],
+    queryKey: [queryKey.read, url],
     queryFn: ({ pageParam }) => api.get({ url }),
     initialPageParam: 1,
     retry: 1,

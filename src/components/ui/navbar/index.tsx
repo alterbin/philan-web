@@ -14,7 +14,7 @@ const { hash } = staticRoutes.home;
 
 const routes = [
   { label: "Home", href: `#${hash.home}` },
-  { label: "Features", href: `/#${hash.features}` },
+  { label: "Give an item", href: `/givens` },
   { label: "Contact Us", href: `#${hash.contactUs}` },
 ];
 
@@ -32,10 +32,10 @@ function Menu({ className = "" }) {
     return (
       <svg
         onClick={toggleMenu}
-        className={`cursor-pointer ${className}`}
+        className={`cursor-pointer w-7 h-7 ${className}`}
         xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
+        // width="24"
+        // height="24"
         viewBox="0 0 44 44"
         fill="none"
       >
@@ -54,7 +54,7 @@ function Menu({ className = "" }) {
   return (
     <svg
       onClick={toggleMenu}
-      className={`cursor-pointer ${className}`}
+      className={`cursor-pointer w-7 h-7 ${className}`}
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -142,11 +142,6 @@ function MobileMenu() {
       <div className="flex flex-col items-center">
         <Routes mobile />
 
-        <a className="app_hero_section__content__txt__action" href="/">
-          <Arrow />
-
-          <Typography variant="span">Learn more</Typography>
-        </a>
       </div>
 
       <div className="app__header__mobile_menu_content__footer">
