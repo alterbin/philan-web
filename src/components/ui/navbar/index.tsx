@@ -13,9 +13,9 @@ import "./styles.css";
 const { hash } = staticRoutes.home;
 
 const routes = [
-  { label: "Home", href: `#${hash.home}` },
+  { label: "Home", href: `/#${hash.home}` },
   { label: "Give an item", href: `/givens` },
-  { label: "Contact Us", href: `#${hash.contactUs}` },
+  { label: "Contact Us", href: `/#${hash.contactUs}` },
 ];
 
 function Menu({ className = "" }) {

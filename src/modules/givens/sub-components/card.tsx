@@ -11,6 +11,7 @@ interface CardProps {
   address: string;
   images: string[];
   onClick: () => void;
+  interestCount: number;
 }
 
 const Card: React.FC<CardProps> = ({
@@ -19,6 +20,7 @@ const Card: React.FC<CardProps> = ({
   images,
   onClick,
   address,
+  interestCount,
 }) => {
   const settings = {
     dots: true,
@@ -42,6 +44,12 @@ const Card: React.FC<CardProps> = ({
           {images.map((image, index) => (
             <div key={index} className="relative max-h-[327px] rounded-lg">
               {/* Image */}
+              <div className="flex justify-between gap-2 bg-[#000] max-w-[83px] max-h-[35px] py-[8px] px-[10px] z-50 absolute right-4 top-3 text-center text-white rounded-[5px] font-semibold">
+                <div className="">
+                  <ReceiveGift fill="#fff" />
+                </div>
+                {interestCount}
+              </div>
               <img
                 src={image}
                 alt={`${title} ${index + 1}`}
@@ -56,7 +64,9 @@ const Card: React.FC<CardProps> = ({
 
       {/* Content Section */}
       <div className="p-3">
-        <h3 className="text-lg mb-1 font-semibold text-green-90 capitalize">{title}</h3>
+        <h3 className="text-lg mb-1 font-semibold text-green-90 capitalize">
+          {title}
+        </h3>
         <div className="flex gap-2 mb-1 h-12">
           <span className="app_card_desc">Description:</span>
           <span className="app_card_desc_text">{description}</span>
@@ -82,7 +92,9 @@ const Card: React.FC<CardProps> = ({
             <div className="app_claim_btn_icon animate-rotate45 xs:flex hidden">
               <ReceiveGift />
             </div>
-            <span className="app_claim_btn_text sm:!text-base !text-sm">Claim Item</span>
+            <span className="app_claim_btn_text sm:!text-base !text-sm">
+              Claim Item
+            </span>
           </Button>
         </div>
       </div>

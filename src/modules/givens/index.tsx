@@ -66,7 +66,7 @@ export default function Givens() {
           </div>
 
           <div
-            className="flex justify-end gap-2 h-10"
+            className="flex tablet:justify-end justify-start gap-2 h-10"
             style={{
               maxHeight: "46px",
             }}
@@ -101,6 +101,7 @@ export default function Givens() {
                 images={post.photos}
                 address={post?.address}
                 onClick={() => handleClaim(post)}
+                interestCount={post?.interestCount}
               />
             ))
           )}

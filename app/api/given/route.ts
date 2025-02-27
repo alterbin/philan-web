@@ -28,11 +28,22 @@ export async function GET(request: Request) {
       skip,
       take,
       orderBy: { createdAt: order },
+      include: {
+        _count: {
+          select: { interests: true },
+        },
+      },
     }),
   ]);
+
+  const formattedData = data.map((given) => ({
+    ...given,
+    interestCount: given._count.interests,
+  }));
+
   return NextResponse.json({
     total,
-    data,
+    data: formattedData,
     message: "Givens fetched successfully",
   });
 }

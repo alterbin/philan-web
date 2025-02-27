@@ -155,6 +155,7 @@ const Interest = (options = {}) => {
     ...options,
     onSuccess: async (data: any) => {
       successToast(data.description);
+      await queryClient?.refetchQueries({ queryKey: [queryKey.read] })
       setModals((prev) => ({ ...prev, enable: false }));
     },
     onError: (err: any) => {
