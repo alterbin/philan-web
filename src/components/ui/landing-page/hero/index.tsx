@@ -26,7 +26,7 @@ export const Hero = () => {
             color="main-color"
             className="md:text-5xl text-4xl leading-tight"
           >
-            Breathe <span className="text-sec_color">New Life</span> into Old Items.
+            Breathe <span className="text-sec_color">New Life</span> Into Old Items.
           </Typography>
           <Typography variant="p" color="main-color" className="md:text-xl text-[15px]">
             Join Philan to give old items a new story.

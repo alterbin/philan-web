@@ -11,7 +11,9 @@ export async function GET(request: Request) {
   const search = url.searchParams.get("search") || "";
   const skip = (page - 1) * take;
 
-  const where: Prisma.givensWhereInput = search
+  const where: Prisma.givensWhereInput = {
+    AND: [
+      search
     ? {
         OR: [
           { name: { contains: search, mode: "insensitive" } },
@@ -19,7 +21,10 @@ export async function GET(request: Request) {
           { address: { contains: search, mode: "insensitive" } },
         ],
       }
-    : {};
+        : {},
+      { isFulfilled: false },
+    ]
+  };
 
   const [total, data] = await Promise.all([
     prisma.givens.count({ where }),
