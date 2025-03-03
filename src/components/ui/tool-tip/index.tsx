@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 interface TooltipProps {
   message: React.ReactNode;
   position?: 'top' | 'bottom' | 'left' | 'right';
-  Icon?: React.ReactNode;
+  displayedText?: React.ReactNode;
   className?: string;
 }
 
@@ -11,7 +11,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   message,
   position = 'bottom',
   className,
-  Icon,
+  displayedText,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -21,7 +21,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
       onMouseEnter={() => setIsVisible(true)}
       onMouseLeave={() => setIsVisible(false)}
     >
-      {Icon}
+      {displayedText}
       {isVisible && (
         <div
           className={classNames(

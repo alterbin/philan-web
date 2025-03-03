@@ -102,7 +102,7 @@ const Card: React.FC<CardProps> = ({
           <Tooltip
             className="!max-w-max"
             message={<p>{description}</p>}
-            Icon={<span className="app_card_desc_text">{description}</span>}
+            displayedText={<span className="app_card_desc_text">{description}</span>}
             position="top"
           />
           
@@ -117,7 +117,7 @@ const Card: React.FC<CardProps> = ({
             <Tooltip
               className="max-w-max"
               message={<p>{address}</p>}
-              Icon={<span className="card_text">{address}</span>}
+              displayedText={<span className="card_text">{address}</span>}
               position="top"
             />
           </div>
