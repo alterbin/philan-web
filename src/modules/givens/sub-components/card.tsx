@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -16,31 +16,6 @@ interface CardProps {
   onClick: () => void;
   interestCount: number;
 }
-
-export const UserIcon: FC<any> = ({
-  width = "12",
-  height = "14",
-  ...props
-}) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={width}
-      height={height}
-      viewBox="0 0 12 14"
-      fill="none"
-      {...props}
-    >
-      <path
-        d="M1.33301 12.3376V11.6709C1.33301 9.09357 3.42235 7.00423 5.99967 7.00423M10.6663 12.3376V11.6709C10.6663 9.09357 8.577 7.00423 5.99967 7.00423M5.99967 7.00423C7.47243 7.00423 8.66634 5.81032 8.66634 4.33756C8.66634 2.86481 7.47243 1.6709 5.99967 1.6709C4.52692 1.6709 3.33301 2.86481 3.33301 4.33756C3.33301 5.81032 4.52692 7.00423 5.99967 7.00423Z"
-        stroke="black"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-};
 
 const Card: React.FC<CardProps> = ({
   title,
