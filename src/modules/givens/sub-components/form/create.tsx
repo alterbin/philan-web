@@ -23,24 +23,28 @@ export default function NewGivenForm() {
   const { mutate, isPending } = givenQueries.Create();
   const [photos, setPhotos] = useState<string[]>([]);
 
-  const contact = getLocalStorage('contact_info');
+  const contact = getLocalStorage("contact_info");
 
   const initialValues = {
     name: "",
     address: "",
     description: "",
-    contact: String(contact) || "",
+    contact: contact ? String(contact) : "",
     agreedTc: false,
+    saveContactInfo: true,
   };
 
   type InitialValues = ReturnType<() => typeof initialValues>;
 
-
   const formikProps = {
     initialValues,
     validate: zodToFormikAdapter(createGivenSchema),
-    onSubmit: ({ agreedTc, ...values }: InitialValues) => {
-      saveLocalStorage('contact_info', values?.contact)
+    onSubmit: ({ agreedTc, saveContactInfo, ...values }: InitialValues) => {
+      if (saveContactInfo) {
+        saveLocalStorage("contact_info", values?.contact);
+      } else {
+        localStorage.removeItem("contact_info");
+      }
       mutate({
         ...values,
         photos,
@@ -107,16 +111,25 @@ export default function NewGivenForm() {
           />
         </div>
 
-        <Input
-          label="Contact Info"
-          name="contact"
-          placeholder="Please enter your email or phone number"
-          value={values.contact}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={errorParser(errors, touched, "contact")}
-          required
-        />
+        <div className="flex flex-col gap-2">
+          <Input
+            label="Contact Info"
+            name="contact"
+            placeholder="Please enter your email or phone number"
+            value={values.contact}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={errorParser(errors, touched, "contact")}
+            required
+          />
+          <Checkbox
+            label="Remember Contact Information"
+            id="saveContactInfo"
+            size="sm"
+            onChange={handleChange}
+            checked={values.saveContactInfo}
+          />
+        </div>
       </div>
 
       <ImageUploader

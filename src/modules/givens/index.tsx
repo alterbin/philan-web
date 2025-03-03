@@ -98,7 +98,7 @@ export default function Givens() {
                 key={post.id}
                 title={post.name}
                 description={post.description}
-                images={post.photos}
+                images={post?.photos}
                 address={post?.address}
                 onClick={() => handleClaim(post)}
                 interestCount={post?.interestCount}
