@@ -11,6 +11,7 @@ export interface Given {
   userId?: string;
   interests?: string;
   status?: string;
+  interestCount: number
 }
 
 export type CreateGivingDto = {

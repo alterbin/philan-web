@@ -59,7 +59,7 @@ export const Dropdown: React.FC<SelectDropdownProps> = ({
   return (
     <div
       ref={dropdownRef}
-      className={`relative text-left w-full flex flex-col ${className}`}
+      className={`relative text-left flex flex-col ${className}`}
     >
       {label && (
         <label className="text-sm font-semibold text-gray-700 pb-1 flex gap-1 items-center">
@@ -95,9 +95,9 @@ export const Dropdown: React.FC<SelectDropdownProps> = ({
 
       {isOpen && data.length > 0 && (
         <div
-          className={`absolute top-0 left-0 ${
+          className={`absolute top-0 right-0 ${
             label ? "mt-[80px]" : "mt-[50px]"
-          } w-full max-h-[180px] overflow-y-auto py-2 rounded-xl z-20 shadow-lg bg-white border border-solid border-[#E4E7EC] transition ease-out duration-200 transform`}
+          } w-full max-h-[180px] min-w-[100px] max-w-[100px] overflow-y-auto py-2 rounded-xl z-20 shadow-lg bg-white border border-solid border-[#E4E7EC] transition ease-out duration-200 transform`}
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="options-menu"

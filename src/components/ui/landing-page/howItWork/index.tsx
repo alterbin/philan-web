@@ -54,12 +54,12 @@ export const HowItWorks = () => {
             </div>
             <Typography
               variant="h6"
-              className="text-black-60 text-lg"
+              className="text-black-60 text-lg md:text-start text-center"
               fontWeight="sb"
             >
               {item.title}
             </Typography>
-            <Typography variant="p" fontWeight="rg" className="">
+            <Typography variant="p" fontWeight="rg" className="md:text-start text-center">
               {item.description}
             </Typography>
           </div>

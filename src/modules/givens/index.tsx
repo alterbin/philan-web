@@ -66,7 +66,7 @@ export default function Givens() {
           </div>
 
           <div
-            className="flex justify-end gap-2 h-10"
+            className="flex tablet:justify-end justify-start gap-2 h-10"
             style={{
               maxHeight: "46px",
             }}
@@ -78,7 +78,7 @@ export default function Givens() {
               className="h-[46px]"
             />
 
-            <Dropdown
+            {/* <Dropdown
               btnClassName="bg-[#DD9940] h-[46px] md:!w-[118px] !w-[45px] whitespace-nowrap "
               value="Filter by"
               data={[
@@ -86,7 +86,7 @@ export default function Givens() {
                 { label: "Date" },
                 { label: "Location" },
               ]}
-            />
+            /> */}
           </div>
         </div>
         <div className="card_wrapper mt-10">
@@ -98,9 +98,10 @@ export default function Givens() {
                 key={post.id}
                 title={post.name}
                 description={post.description}
-                images={post.photos}
+                images={post?.photos}
                 address={post?.address}
                 onClick={() => handleClaim(post)}
+                interestCount={post?.interestCount}
               />
             ))
           )}

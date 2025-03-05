@@ -8,4 +8,5 @@ export { EmptyState } from "./empty-state";
 export { Stats } from "./landing-page/stats";
 export { SearchInput } from "./search";
 export { Dropdown } from "./drop-down";
+export { Tooltip } from "./tool-tip";
 export * from "./navbar";
