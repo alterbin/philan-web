@@ -90,7 +90,7 @@ function FooterC() {
             priority
           />
 
-          <Typography variant="span">Give Old items a new story</Typography>
+          <Typography variant="span">Give old items a new story</Typography>
         </div>
 
         <div className="app_footer__content2">
