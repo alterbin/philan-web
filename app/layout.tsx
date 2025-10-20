@@ -5,6 +5,7 @@ import Provider from "@/src/providers";
 import Footer from "@/src/components/ui/footer";
 import Navbar from "@/src/components/ui/navbar";
 import { Suspense } from "react";
+import Script from "next/script";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -31,16 +32,29 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} ${inter.variable} antialiased`}>
-      <Suspense fallback={<>Loading...</>}>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-ZHTXYQ9J07"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+             gtag('js', new Date());
 
-        <Provider>
-          <Navbar />
-          {children}
-          <div className="app_landing_page__px">
-            <Footer />
-          </div>
+           gtag('config', 'G-ZHTXYQ9J07');
+          `}
+        </Script>
+        <Suspense fallback={<>Loading...</>}>
+          <Provider>
+            <Navbar />
+            {children}
+            <div className="app_landing_page__px">
+              <Footer />
+            </div>
           </Provider>
-          </Suspense>
+        </Suspense>
       </body>
     </html>
   );
