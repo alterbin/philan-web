@@ -1,3 +1,4 @@
+import { metaData as staticMetaData } from './static';
 
 export const getPageHeading = (pathname: string) => {
   const pageName = pathname.substring(pathname.lastIndexOf('/') + 1);
@@ -70,3 +71,22 @@ export function errorParser(errors: any, touched: any, key: string): any {
   return null;
 }
 
+export function getMetadata(metaData = staticMetaData) {
+  return {
+    title: metaData.siteName,
+    description: metaData.description,
+    openGraph: {
+      ...metaData,
+      type: 'website',
+      images: [{
+        url: metaData.image,
+      }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      site: `@${metaData.url}`,
+      creator: `@${metaData.siteName}`,
+      images: metaData.image,
+    },
+  };
+}
