@@ -5,7 +5,7 @@ const pwa = withPWA({
   dest: "public",
   register: true,
   skipWaiting: true,
-  disable: process.env.NODE_ENV === "development",
+  disable: false,
   maximumFileSizeToCacheInBytes: 3 * 1024 * 1024, // 3 MB
   runtimeCaching: [
     {

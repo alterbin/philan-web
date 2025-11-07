@@ -4,8 +4,8 @@
   "description": "Give Old Items a New Story",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#FFBE0C",
+  "background_color": "#06382e",
+  "theme_color": "#06383e",
   "orientation": "portrait-primary",
   "icons": [
     {
