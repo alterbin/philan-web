@@ -6,6 +6,8 @@ import Navbar from "@/src/components/ui/navbar";
 import { Suspense } from "react";
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Metas } from "@/src/utils/metas";
+import { PwaInstallPromptClient } from "@/src/components/pwa-install-prompt/client-wrapper";
+import { Metadata } from "next";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -18,6 +20,17 @@ export const inter = Inter({
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-inter",
 });
+
+export const metadata: Metadata = {
+  title: "Philan",
+  description: "Give Old Items a New Story",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Philan",
+  },
+};
 
 export default function RootLayout({
   children,
@@ -37,6 +50,7 @@ export default function RootLayout({
             <div className="app_landing_page__px">
               <Footer />
             </div>
+            <PwaInstallPromptClient />
           </Provider>
         </Suspense>
       </body>
