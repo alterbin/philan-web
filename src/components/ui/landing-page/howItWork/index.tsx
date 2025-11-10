@@ -1,13 +1,12 @@
 import React from "react";
 import Typography from "../../typography";
-import Lens from "../../../../../public/media/how-it-works/lens.png";
-import Gift from "../../../../../public/media/how-it-works/gift.png";
-import HoldPhone from "../../../../../public/media/how-it-works/phone.png";
-import Image, { StaticImageData } from "next/image";
+import PostIcon from "../../../../../public/media/how-it-works/icon-post.svg";
+import Gift from "../../../../../public/media/how-it-works/icon-claim.svg";
+import Lens from "../../../../../public/media/how-it-works/icon-browse.svg";
 import routes from "@/src/utils/routes";
 
 interface IProps {
-  icon: StaticImageData;
+  icon: React.ReactNode;
   title: string;
   description: string;
 }
@@ -15,43 +14,40 @@ interface IProps {
 export const HowItWorks = () => {
   const Items: IProps[] = [
     {
-      icon: HoldPhone,
+      icon: <PostIcon />,
       title: "Post Your Unwanted Items",
       description: "Share your unwanted items with the community.",
     },
     {
-      icon: Lens,
+      icon: <Lens />,
       title: "Browse Available Items",
       description: "Find items you need from our community listings.",
     },
     {
-      icon: Gift,
+      icon: <Gift />,
       title: "Claim Needed Items",
       description: "Get the items you need by showing interest.",
     },
   ];
   return (
-    <div className="" id={routes.home.hash.features}>
-      <div className="center w-full mb-5 tablet:mt-5 mt-5">
-        <Typography variant="h1" fontWeight="bd" className="md:text-4xl text-3xl">
+    <div className="lg:mt-24" id={routes.home.hash.features}>
+      <div className="center w-full mb-5 tablet:mt-5 mt-5 lg:mt-10">
+        <Typography variant="h1" fontWeight="bd" className="md:text-4xl text-3xl py-4">
           How It works
         </Typography>
       </div>
 
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 place-items-center items-center w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center w-full max-w-7xl mx-auto">
         {Items?.map((item) => (
           <div
             key={item.title}
-            className="flex-col gap-3 bg-white px-7 py-7 max-w-[406px] max-h-[473px] h-[473px] rounded-2xl"
+            className="flex flex-col items-center justify-center text-center bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 px-6 py-10 w-full sm:max-w-[406px] lg:max-w-[380px]"
           >
-            <div className="max-w-[346px] max-h-[270px] rounded-full center w-full h-full mb-5">
-              <Image
-                src={item.icon}
-                alt=""
-                priority
-                className="w-full h-[270px] object-cover"
-              />
-            </div>
+              
+              <div className="w-32 h-40 flex items-center justify-center mb-6 relative z-20">
+                {item.icon}
+                </div>
+            
             <Typography
               variant="h6"
               className="text-black-60 text-lg md:text-start text-center"
@@ -59,8 +55,8 @@ export const HowItWorks = () => {
             >
               {item.title}
             </Typography>
-            <Typography variant="p" fontWeight="rg" className="md:text-start text-center">
-              {item.description}
+            <Typography variant="p" fontWeight="rg" className="text-center py-1">
+              {"  "}{item.description}{"  "}
             </Typography>
           </div>
         ))}

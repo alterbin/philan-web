@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="670 70 160 200">
+  <!-- Circle background -->
+  <circle cx="750" cy="150" r="80" fill="#f5f5f5" stroke="#2d5f4f" stroke-width="3"/>
+  
+  <!-- Left hand -->
+  <path d="M 710 155 L 720 155 L 720 145 L 725 145 L 725 140 L 730 140 L 730 145 L 735 145 L 735 155 L 740 155 L 740 170 L 710 170 Z" 
+        fill="none" stroke="#2d5f4f" stroke-width="3" stroke-linejoin="round"/>
+  
+  <!-- Right hand -->
+  <path d="M 790 155 L 780 155 L 780 145 L 775 145 L 775 140 L 770 140 L 770 145 L 765 145 L 765 155 L 760 155 L 760 170 L 790 170 Z" 
+        fill="none" stroke="#2d5f4f" stroke-width="3" stroke-linejoin="round"/>
+  
+  <!-- Box being exchanged -->
+  <rect x="735" y="150" width="30" height="25" rx="3" fill="#c17a3f" stroke="#2d5f4f" stroke-width="2"/>
+  <line x1="735" y1="162.5" x2="765" y2="162.5" stroke="#2d5f4f" stroke-width="2"/>
+  <line x1="750" y1="150" x2="750" y2="175" stroke="#2d5f4f" stroke-width="2"/>
+  
+  <!-- Checkmark -->
+  <circle cx="770" cy="135" r="12" fill="#c17a3f"/>
+  <path d="M 765 135 L 768 138 L 775 131" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
