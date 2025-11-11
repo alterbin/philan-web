@@ -1,8 +1,6 @@
 import React from "react";
 import Typography from "../../typography";
-import PostIcon from "../../../../../public/media/how-it-works/icon-post.svg";
-import Gift from "../../../../../public/media/how-it-works/icon-claim.svg";
-import Lens from "../../../../../public/media/how-it-works/icon-browse.svg";
+import { PostIcon, GiftIcon, BrowseIcon } from "../../../../../public/media/how-it-works/work-icon";
 import routes from "@/src/utils/routes";
 
 interface IProps {
@@ -19,12 +17,12 @@ export const HowItWorks = () => {
       description: "Share your unwanted items with the community.",
     },
     {
-      icon: <Lens />,
+      icon: <BrowseIcon />,
       title: "Browse Available Items",
       description: "Find items you need from our community listings.",
     },
     {
-      icon: <Gift />,
+      icon: <GiftIcon />,
       title: "Claim Needed Items",
       description: "Get the items you need by showing interest.",
     },
@@ -44,7 +42,7 @@ export const HowItWorks = () => {
             className="flex flex-col items-center justify-center text-center bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 px-6 py-10 w-full sm:max-w-[406px] lg:max-w-[380px]"
           >
               
-              <div className="w-32 h-40 flex items-center justify-center mb-6 relative z-20">
+              <div className="w-32 h-40 flex items-center justify-center mb-6">
                 {item.icon}
                 </div>
             
