@@ -29,7 +29,7 @@ export const Stats = () => {
     <div ref={sectionRef} className="bg-[#E6EBEA80] px-20 py-8 mt-8 rounded-3xl">
       <div className="flex flex-col gap-16">
         <Typography className="text-black-60 text-4xl text-center md:text-start" fontWeight="bd">
-          Philan Stats
+          Optimal Stats
         </Typography>
 
         <div className="flex md:gap-3 gap-24 md:flex-row flex-col justify-between items-center w-full px-4">

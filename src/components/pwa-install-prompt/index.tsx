@@ -35,7 +35,7 @@ export function PwaInstallPrompt() {
       >
         <div className="flex items-center justify-between">
           <Typography variant="h3" fontWeight="bd">
-            Install Philan App
+            Install Optimal App
           </Typography>
           <button
             onClick={handleDismiss}
@@ -59,7 +59,7 @@ export function PwaInstallPrompt() {
           </button>
         </div>
         <Typography variant="p" className="mb-4">
-          Add Philan to your home screen for a better experience
+          Add Optimal to your home screen for a better experience
         </Typography>
         <div className="flex justify-end space-x-2">
           <Button variant="outline" size="sm" onClick={handleDismiss}>

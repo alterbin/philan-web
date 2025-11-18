@@ -6,7 +6,7 @@ import { Button, Tooltip } from "@/src/components/ui";
 import { Location, ReceiveGift } from "@/src/components/svgs/icons";
 
 const DEFAULT_IMAGE =
-  "https://res.cloudinary.com/djlour8oc/image/upload/v1740989561/philan/t66pezzqkte8duatwikq.png";
+  "https://res.cloudinary.com/djlour8oc/image/upload/v1740989561/optimal/t66pezzqkte8duatwikq.png";
 
 interface CardProps {
   title: string;

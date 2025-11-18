@@ -29,7 +29,7 @@ export const Hero = () => {
             Breathe <span className="text-sec_color">New Life</span> Into Old Items.
           </Typography>
           <Typography variant="p" color="main-color" className="md:text-xl text-[15px]">
-            Join Philan to give old items a new story.
+            Join Optimal to give old items a new story.
           </Typography>
           <div className="flex w-full animate-bounce hover:animate-shake">
             <Button

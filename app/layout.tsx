@@ -22,13 +22,13 @@ export const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Philan",
+  title: "Optimal",
   description: "Give Old Items a New Story",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Philan",
+    title: "Optimal",
   },
 };
 

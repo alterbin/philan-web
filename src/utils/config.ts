@@ -21,7 +21,7 @@ const config = {
     email: "hello@alterbin.com",
     phone: "",
   },
-  SITE_URL: "https://philan-website.vercel.app",
+  SITE_URL: "https://optimal-web.vercel.app",
   services: {
     google: {
       sheets: {
