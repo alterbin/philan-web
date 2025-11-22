@@ -83,7 +83,7 @@ function FooterC() {
         <div className="app_footer__content__item">
           <Image
             className="app__header__logo"
-            src="/media/logos/h-logo-light.svg"
+            src="/media/logos/logo-light.svg"
             width={147}
             height={35}
             alt=""
