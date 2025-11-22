@@ -15,7 +15,7 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-export const inter = Inter({
+const inter = Inter({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-inter",
@@ -32,6 +32,8 @@ export const metadata: Metadata = {
   },
 };
 
+const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -39,11 +41,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Metas></Metas>
-
+      <Metas />
       <body className={`${poppins.variable} ${inter.variable} antialiased`}>
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''} />
-        <Suspense fallback={<>Loading...</>}>
+        {gaId && <GoogleAnalytics gaId={gaId} />}
+        <Suspense fallback={<div>Loading...</div>}>
           <Provider>
             <Navbar />
             {children}
